@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="fil">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aralin 1: Mga Pagbabagong Politikal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css-files/style.css">
+
+    <style>
+        :root {
+            --light-color: #E1D3B6;
+            --dark-color: #010101;
+            --accent-color: #F5F0E8;
+            --popup-bg: rgba(0, 0, 0, 0.95);
+            --border-color: #444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            line-height: 1.6;
+        }
+
+        .lesson-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            background: linear-gradient(135deg, var(--dark-color) 0%, #1a1a1a 100%);
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            margin-top: 6rem;
+            margin-bottom: 2rem;
+        }
+
+        .lesson-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .lesson-title {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 2.5rem;
+            color: var(--light-color);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .lesson-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .section-title {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 1.8rem;
+            color: var(--light-color);
+            margin: 2rem 0 1.5rem 0;
+            text-underline-offset: 8px;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .content {
+            background: rgba(225, 211, 182, 0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+            position: relative;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        .content::before {
+            content: '📜';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: var(--dark-color);
+            padding: 0 10px;
+            font-size: 1.5rem;
+        }
+
+        .content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+            font-size: 1.1rem;
+        }
+
+        .clickable-term {
+            color: var(--accent-color);
+            font-weight: bold;
+            cursor: pointer;
+            position: relative;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        .clickable-term:hover {
+            text-shadow: 0 0 10px var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .photo-container {
+            position: relative;
+            width: 100%;
+            height: 40rem;
+            padding-bottom: 56.25%;
+            margin: 2rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+            animation: zoomIn 1s ease-out;
+        }
+
+        .photo-container img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+            margin: 2rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+            animation: zoomIn 1s ease-out;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .decorative-elements {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            opacity: 0.3;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent-color);
+            color: var(--dark-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+            z-index: 1000;
+        }
+
+        /* Popup Modal */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--popup-bg);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .popup-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #1a1a1a 0%, var(--dark-color) 100%);
+            border: 2px solid var(--accent-color);
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 700px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+            animation: popIn 0.4s ease-out;
+        }
+
+        .popup-content p{
+            margin-bottom: .5rem;
+        }
+
+        .popup-content .kontribusyon li{
+            margin-bottom: 0;
+            margin-left: 2rem;
+        }
+
+        .popup-content .kontribusyon{
+            margin-bottom: .5rem;
+        }
+
+        .popup-content .sanggunian{
+            margin-bottom: 0;
+        }
+
+        .popup-header {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .popup-body {
+            color: var(--light-color);
+            line-height: 1.6;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Enhanced Image Container */
+        .popup-image-container {
+            width: 100%;
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(135, 206, 235, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(135, 206, 235, 0.3);
+            position: relative;
+            overflow: hidden;
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        .popup-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s ease, filter 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .popup-image:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        /* Image placeholder when no image is available */
+        .image-placeholder {
+            width: 100%;
+            max-width: 400px;
+            height: 250px;
+            background: linear-gradient(135deg, rgba(135, 206, 235, 0.2), rgba(135, 206, 235, 0.05));
+            border: 2px dashed var(--accent-color);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            font-size: 3rem;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .image-placeholder:hover {
+            opacity: 1;
+            transform: scale(1.02);
+        }
+
+        .image-placeholder-text {
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .close-popup {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .close-popup:hover {
+            transform: rotate(90deg);
+            color: #ff6b6b;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px var(--accent-color);
+            }
+            to {
+                box-shadow: 0 0 20px var(--accent-color);
+            }
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .lesson-container {
+                padding: 1rem;
+                margin: 1rem;
+                margin-top: 5rem;
+            }
+
+            .photo-container img{
+                height: 20rem;
+            }
+
+            .photo-container {
+                height: 20rem;
+            }
+
+            .lesson-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .content {
+                padding: 1.5rem;
+            }
+
+            .content p {
+                font-size: 1rem;
+            }
+
+            .decorative-elements {
+                display: none;
+            }
+
+            .popup-content {
+                padding: 1.5rem;
+                width: 95%;
+                max-width: 500px;
+            }
+
+            .popup-image-container {
+                padding: 0.5rem;
+                margin: 1rem 0;
+            }
+
+            .popup-image {
+                max-width: 100%;
+            }
+
+            .image-placeholder {
+                height: 200px;
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lesson-title {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+
+            .content p {
+                font-size: 0.95rem;
+            }
+
+            .popup-content {
+                padding: 1rem;
+            }
+
+            .popup-header {
+                font-size: 1.5rem;
+            }
+
+            .image-placeholder {
+                height: 150px;
+                font-size: 2rem;
+            }
+        }
+
+        .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem; /* This adds space between buttons */
+        margin-bottom: 1rem;
+        }
+
+
+
+        /* From Uiverse.io by zymantas-katinas */ 
+        .button {
+        position: relative;
+        border: none;
+        background: transparent;
+        padding: 0;
+        outline: none;
+        cursor: pointer;
+        font-family: sans-serif;
+        }
+
+        /* Shadow layer */
+        .button .shadow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
+        transform: translateY(2px);
+        transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+        }
+
+        /* Edge layer */
+        .button .edge {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        background: linear-gradient(
+            to left,
+            hsl(217, 33%, 16%) 0%,
+            hsl(217, 33%, 32%) 8%,
+            hsl(217, 33%, 32%) 92%,
+            hsl(217, 33%, 16%) 100%
+        );
+        }
+
+        /* Front layer */
+        .button .front {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 28px;
+        font-size: 1rem;
+        color: white;
+        background: hsl(217, 33%, 17%);
+        border-radius: 8px;
+        transform: translateY(-4px);
+        transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+        }
+
+        /* Hover and active states */
+        .button:hover .shadow {
+        transform: translateY(4px);
+        transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+        }
+
+        .button:hover .front {
+        transform: translateY(-6px);
+        transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+        }
+
+        .button:active .shadow {
+        transform: translateY(1px);
+        transition: transform 34ms;
+        }
+
+        .button:active .front {
+        transform: translateY(-2px);
+        transition: transform 34ms;
+        }
+
+        /* Disable text selection */
+        .button .front span {
+        user-select: none;
+        }
+    </style>
+</head>
+<body>
+
+     <!-- HEADER START-->
+     <header class="header" id="header">
+        <nav class="nav container">
+            <a href="pambungad2.html" class="nav_logo">E-LINANGAN</a>
+
+            <div class="nav_menu" id="nav-menu">
+                <ul class="nav_list">
+                    <li class="nav_item">
+                        <a href="pambungad2.html" class="nav_link">
+                            <i class="ri-arrow-right-up-line"></i>
+                            <span>Pambungad</span>
+                        </a>
+                    </li>
+
+                    <li class="nav_item">
+                        <a href="aralin2.html" class="nav_link">
+                            <i class="ri-arrow-right-up-line"></i>
+                            <span>Nilalaman</span>
+                        </a>
+                    </li>
+
+                    <li class="nav_item">
+                        <a href="palaro2.html" class="nav_link">
+                            <i class="ri-arrow-right-up-line"></i>
+                            <span>Hamon</span>
+                        </a>
+                    </li>
+                </ul>
+
+            <!-- CLOSE BUTTON START -->
+            <div class="nav_close" id="nav-close">
+                <i class="ri-close-large-line"></i>
+             </div>
+            <!-- CLOSE BUTTON END -->
+            </div>
+
+            <!-- TOOGLE BUTTON START -->
+            <div class="nav_toggle" id="nav-toggle">
+                <i class="ri-menu-2-line"></i>
+             </div>
+            <!-- TOOGLE BUTTON END -->
+        </nav>
+     </header>
+
+    <!-- HEADER END -->
+
+    <div class="lesson-container">
+        <div class="decorative-elements">
+            🏛️⚔️🛡️
+        </div>
+
+        <header class="lesson-header">
+            <h1 class="lesson-title">Aralin 2: Manoryalismo</h1>
+        </header>
+
+        <section class="content">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/D1NMm5dI9Lc" title="Roman Empire Fall" allowfullscreen></iframe>
+            </div>
+            
+            <p>Ang <b>manoryalismo</b> ang umiiral na sistemang pang-ekonomiya noong Gitnang Panahon. Halos lahat ng mga kalakal at serbisyo na kailangan ng tao ay ginawa sa mga lupain o <b><i>manor</i></b> ng mga maharlika o makapangyarihang panginoon. Nabuo ang sistemang manoryal sa panahong ang mga bayan sa Europa ay kakaunti at maliliit pa. Dahil nahinto ang kalakalan sa iba’t ibang bahagi ng Imperyong Roman, ang malaking bahagi ng populasyon ng Kanlurang Europa ay umaasa sa mga manor ng maharlika.</p>
+        
+            <div class="photo-container">
+                <img src="aralin2fig1.jpg">
+            </div>
+
+            <p>Ang isang manor ay karaniwang binubuo ng isang <b><i>manor house</i></b>> o kastilyo, kabukiran at pastulan, at mga gusali ng pamayanan- simbahan, mga pagawaan, tirahan ng mga serf, gilingan ng trigo, at lutuan ng mga tinapay.</p>
+            <p>Karaniwang may kakayahang makapagsarili ang mga manor lalo’t pagdating sa pakikipagkalakalan. Ang pagsasaka sa manor ang ikinabubuhay ng mga naninirahan dito. Sila ay nagtatanim at nag-aalaga ng mga hayop upang maging pagkain, nangangala ng balahibo ng tupa (wool) upang gawing damit, nagkukulti ng mga balat upang maging sapatos, at nangunguha ng troso upang gawing kasangkapan sa bahay at sa mga gusali.</p>
+            <p>Subalit ilan sa mga mahahalagang sangkap tulad ng asin na siyang ginagamit upang mapreserba ang mga pagkain at pampalasa, at ang bakal na siyang kailangan para sa paggawa ng mga kasangkapan at sandata ay kinukuha pa sa ibang lugar. Nakasalalay sa manor kung ano ang mga gagawin at ang mga serf naman ang magsasagawa nito.</p>
+        </section>
+
+        <div class="scroll-indicator" onclick="scrollToTop()">
+            <i class="fas fa-arrow-up"></i>
+        </div>
+    </div>
+
+    <!-- Popup Modals -->
+    <div id="popup-overlay" class="popup-overlay" onclick="closePopup()">
+        <div class="popup-content" onclick="event.stopPropagation()">
+            <button class="close-popup" onclick="closePopup()">&times;</button>
+            <h3 id="popup-title" class="popup-header"></h3>
+            
+            <!-- Enhanced Image Container -->
+            <div id="popup-image-container" class="popup-image-container">
+                <img id="popup-image" class="popup-image" src="" alt="Historical Image" style="display: none;">
+                <div id="image-placeholder" class="image-placeholder">
+                    <i class="fas fa-image"></i>
+                    <div class="image-placeholder-text">Walang available na larawan</div>
+                </div>
+            </div>
+            
+            <div id="popup-body" class="popup-body"></div>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <!-- From Uiverse.io by zymantas-katinas --> 
+        <a href="aralin1.html">
+            <button class="button">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <div class="front">
+                <span>↩ Bumalik</span>
+            </div>
+            </button>
+        </a>
+
+        <a href="aralin3.html">
+            <button class="button">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <div class="front">
+                <span>Susunod ↪</span>
+            </div>
+            </button>
+        </a>
+    </div>
+
+    <script>
+        // Popup data - Replace with actual content from your reference
+        const popupData = {
+            
+        };
+
+        function showPopup(key) {
+            const data = popupData[key];
+            if (data) {
+                document.getElementById('popup-title').textContent = data.title;
+                document.getElementById('popup-body').innerHTML = data.content;
+                
+                const imageElement = document.getElementById('popup-image');
+                const placeholderElement = document.getElementById('image-placeholder');
+                
+                if (data.image && data.image.trim() !== '') {
+                    // Show image
+                    imageElement.src = data.image;
+                    imageElement.style.display = 'block';
+                    placeholderElement.style.display = 'none';
+                    
+                    // Handle image load error
+                    imageElement.onerror = function() {
+                        imageElement.style.display = 'none';
+                        placeholderElement.style.display = 'flex';
+                    };
+                } else {
+                    // Show placeholder
+                    imageElement.style.display = 'none';
+                    placeholderElement.style.display = 'flex';
+                }
+                
+                document.getElementById('popup-overlay').style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closePopup() {
+            document.getElementById('popup-overlay').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Close popup with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closePopup();
+            }
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.content');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(el);
+            });
+        });
+    </script>
+
+    <script src="js-files/index.js"></script>
+</body>
+</html>

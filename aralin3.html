@@ -1,0 +1,1915 @@
+<!DOCTYPE html>
+<html lang="fil">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aralin 3: Pagbabagong Sosyo-Kultural</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css-files/style.css">
+
+    <style>
+        :root {
+            --light-color: #E1D3B6;
+            --dark-color: #010101;
+            --accent-color: #F5F0E8;
+            --popup-bg: rgba(0, 0, 0, 0.95);
+            --border-color: #444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            line-height: 1.6;
+        }
+
+        .lesson-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            background: linear-gradient(135deg, var(--dark-color) 0%, #1a1a1a 100%);
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            margin-top: 6rem;
+            margin-bottom: 2rem;
+        }
+
+        .lesson-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .lesson-title {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 2.5rem;
+            color: var(--light-color);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .lesson-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .section-title {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 1.8rem;
+            color: var(--light-color);
+            margin: 2rem 0 1.5rem 0;
+            text-underline-offset: 8px;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .content {
+            background: rgba(225, 211, 182, 0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+            position: relative;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        .content::before {
+            content: '📜';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: var(--dark-color);
+            padding: 0 10px;
+            font-size: 1.5rem;
+        }
+
+        .content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+            font-size: 1.1rem;
+        }
+
+        .clickable-term {
+            color: var(--accent-color);
+            font-weight: bold;
+            cursor: pointer;
+            position: relative;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        .clickable-term:hover {
+            text-shadow: 0 0 10px var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .photo-container {
+            position: relative;
+            width: 100%;
+            height: 40rem;
+            padding-bottom: 56.25%;
+            margin: 2rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+            animation: zoomIn 1s ease-out;
+        }
+
+        .photo-container-aralin3 {
+            position: relative;
+            width: 100%;
+            height: 60rem;
+            padding-bottom: 56.25%;
+            margin: 2rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+            animation: zoomIn 1s ease-out;
+        }
+
+        .photo-container-aralin3 img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .photo-container img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+            margin: 2rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+            animation: zoomIn 1s ease-out;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .decorative-elements {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            opacity: 0.3;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent-color);
+            color: var(--dark-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+            z-index: 1000;
+        }
+
+        /* Popup Modal */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--popup-bg);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .popup-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #1a1a1a 0%, var(--dark-color) 100%);
+            border: 2px solid var(--accent-color);
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 700px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+            animation: popIn 0.4s ease-out;
+        }
+
+        .popup-content p{
+            margin-bottom: .5rem;
+        }
+
+        .popup-content .kontribusyon li{
+            margin-bottom: 0;
+            margin-left: 2rem;
+        }
+
+        .popup-content .kontribusyon{
+            margin-bottom: .5rem;
+        }
+
+        .popup-content .sanggunian{
+            margin-bottom: 0;
+        }
+
+        .popup-header {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .popup-body {
+            color: var(--light-color);
+            line-height: 1.6;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Enhanced Image Container */
+        .popup-image-container {
+            width: 100%;
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(135, 206, 235, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(135, 206, 235, 0.3);
+            position: relative;
+            overflow: hidden;
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        .popup-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s ease, filter 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .popup-image:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        /* Image placeholder when no image is available */
+        .image-placeholder {
+            width: 100%;
+            max-width: 400px;
+            height: 250px;
+            background: linear-gradient(135deg, rgba(135, 206, 235, 0.2), rgba(135, 206, 235, 0.05));
+            border: 2px dashed var(--accent-color);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            font-size: 3rem;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .image-placeholder:hover {
+            opacity: 1;
+            transform: scale(1.02);
+        }
+
+        .image-placeholder-text {
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .close-popup {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .close-popup:hover {
+            transform: rotate(90deg);
+            color: #ff6b6b;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px var(--accent-color);
+            }
+            to {
+                box-shadow: 0 0 20px var(--accent-color);
+            }
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .lesson-container {
+                padding: 1rem;
+                margin: 1rem;
+                margin-top: 5rem;
+            }
+
+            .photo-container img{
+                height: 20rem;
+            }
+
+            .photo-container-aralin3 img{
+                height: 30rem;
+            }
+
+            .photo-container-aralin3 {
+                height: 30rem;
+            }
+
+            .photo-container {
+                height: 20rem;
+            }
+
+            .lesson-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .content {
+                padding: 1.5rem;
+            }
+
+            .content p {
+                font-size: 1rem;
+            }
+
+            .decorative-elements {
+                display: none;
+            }
+
+            .popup-content {
+                padding: 1.5rem;
+                width: 95%;
+                max-width: 500px;
+            }
+
+            .popup-image-container {
+                padding: 0.5rem;
+                margin: 1rem 0;
+            }
+
+            .popup-image {
+                max-width: 100%;
+            }
+
+            .image-placeholder {
+                height: 200px;
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lesson-title {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+
+            .content p {
+                font-size: 0.95rem;
+            }
+
+            .popup-content {
+                padding: 1rem;
+            }
+
+            .popup-header {
+                font-size: 1.5rem;
+            }
+
+            .image-placeholder {
+                height: 150px;
+                font-size: 2rem;
+            }
+        }
+
+
+
+        .papal-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .papal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            justify-items: center;
+        }
+
+        .papal-item {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .papal-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .papal-portrait {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 8px solid #d4af37;
+            object-fit: cover;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .papal-portrait:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .papal-name {
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 1.3;
+            margin: 0;
+        }
+
+        .papal-title {
+            font-size: 16px;
+            color: #7f8c8d;
+            margin: 5px 0 0 0;
+            font-style: italic;
+        }
+
+        .papal-item:last-child:nth-child(odd) {
+            grid-column: 1 / -1;
+            justify-self: center;
+        }
+
+        @media (max-width: 768px) {
+            .papal-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 20px;
+            }
+            
+            .papal-portrait {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .papal-name {
+                font-size: 16px;
+            }
+            
+            .papal-title {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .papal-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+            
+            .papal-portrait {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .papal-name {
+                font-size: 14px;
+            }
+            
+            .papal-title {
+                font-size: 12px;
+            }
+        }
+
+        .triangle-container {
+            position: relative;
+            width: 400px;
+            height: 347px;
+            max-width: 90vw;
+            max-height: 90vh;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .triangle-layer {
+            position: absolute;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #1a1a1a;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+            user-select: none;
+        }
+
+        /* Layer 1 - Top (smallest) */
+        .layer-1 {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 137px solid #FFD700; /* Pure Gold */
+            z-index: 4;
+            position: absolute;
+        }
+
+        .layer-1 p{
+            margin-top: 12rem;
+        }
+
+        .layer-1::after {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+        }
+
+        /* Layer 2 */
+        .layer-2 {
+            top: 87px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 137px solid transparent;
+            border-right: 137px solid transparent;
+            border-bottom: 137px solid #F4C430; /* Saffron Gold */
+            z-index: 3;
+        }
+
+        .layer-2::after {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+        }
+
+        .layer-2 p{
+            margin-top: 13rem;
+        }
+
+        /* Layer 3 */
+        .layer-3 {
+            top: 174px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 174px solid transparent;
+            border-right: 174px solid transparent;
+            border-bottom: 137px solid #DAA520; /* Goldenrod */
+            z-index: 2;
+        }
+
+        .layer-3::after {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+        }
+
+        .layer-3 p {
+            margin-top: 13rem;
+        }
+
+        /* Layer 4 - Bottom (largest) */
+        .layer-4 {
+            top: 261px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 211px solid transparent;
+            border-right: 211px solid transparent;
+            border-bottom: 136px solid #B8860B; /* Dark Goldenrod */
+            z-index: 1;
+        }
+
+        .layer-4::after {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+        }
+
+        .layer-4 p{
+            margin-top: 13rem;
+        }
+
+        /* Hover Effects */
+        .triangle-layer:hover {
+            transform: translateX(-50%) scale(1.05);
+            filter: brightness(1.2) drop-shadow(0 4px 12px rgba(255, 215, 0, 0.6));
+        }
+
+        .layer-1:hover {
+            border-bottom-color: #FFED4E;
+        }
+
+        .layer-2:hover {
+            border-bottom-color: #F7D358;
+        }
+
+        .layer-3:hover {
+            border-bottom-color: #E6B800;
+        }
+
+        .layer-4:hover {
+            border-bottom-color: #CC9A00;
+        }
+
+        /* Click animation */
+        .triangle-layer:active {
+            transform: translateX(-50%) scale(0.98);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .triangle-container {
+                width: 300px;
+                height: 260px;
+            }
+
+            .layer-1 {
+                border-left-width: 88px;
+                border-right-width: 88px;
+                border-bottom-width: 115px;
+            }
+
+            .layer-1::after {
+                top: 38px;
+                font-size: 12px;
+            }
+
+            .layer-1 p {
+                margin-top: 11rem;
+            }
+
+            .layer-2 {
+                top: 65px;
+                border-left-width: 115px;
+                border-right-width: 115px;
+                border-bottom-width: 115px;
+            }
+
+            .layer-2::after {
+                top: 38px;
+                font-size: 12px;
+            }
+
+            .layer-2 p {
+                margin-top: 12rem;
+            }
+
+            .layer-3 {
+                top: 130px;
+                border-left-width: 142px;
+                border-right-width: 142px;
+                border-bottom-width: 115px;
+            }
+
+            .layer-3::after {
+                top: 38px;
+                font-size: 12px;
+            }
+
+            .layer-3 p {
+                margin-top: 12rem;
+            }
+
+            .layer-4 {
+                top: 195px;
+                border-left-width: 169px;
+                border-right-width: 169px;
+                border-bottom-width: 115px;
+            }
+
+            .layer-4::after {
+                top: 38px;
+                font-size: 12px;
+            }
+
+            .layer-4 p {
+                margin-top: 12rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .triangle-container {
+                width: 240px;
+                height: 208px;
+            }
+
+            .layer-1 {
+                border-left-width: 80px;
+                border-right-width: 80px;
+                border-bottom-width: 102px;
+            }
+
+            .layer-1::after {
+                top: 30px;
+                font-size: 10px;
+            }
+
+            .layer-1 p {
+                margin-top: 10rem;
+            }
+
+            .layer-2 {
+                top: 52px;
+                border-left-width: 102px;
+                border-right-width: 102px;
+                border-bottom-width: 102px;
+            }
+
+            .layer-2::after {
+                top: 30px;
+                font-size: 10px;
+            }
+
+            .layer-2 p {
+                margin-top: 11rem;
+            }
+
+            .layer-3 {
+                top: 104px;
+                border-left-width: 124px;
+                border-right-width: 124px;
+                border-bottom-width: 102px;
+            }
+
+            .layer-3::after {
+                top: 30px;
+                font-size: 10px;
+            }
+
+            .layer-3 p {
+                margin-top: 11rem;
+            }
+
+            .layer-4 {
+                top: 156px;
+                border-left-width: 146px;
+                border-right-width: 146px;
+                border-bottom-width: 102px;
+            }
+
+            .layer-4::after {
+                top: 30px;
+                font-size: 10px;
+            }
+
+            .layer-4 p {
+                margin-top: 11rem;
+            }
+        }
+
+        /* Subtle glow effect */
+        .triangle-container {
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
+        }
+
+        .table_component {
+            overflow: auto;
+            width: 100%;
+        }
+
+        .table_component table {
+            border: 1px solid #828282;
+            height: 100%;
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            border-spacing: 1px;
+            text-align: left;
+        }
+
+        .table_component th {
+            border: 1px solid #828282;
+            background-color: #000000;
+            color: white;
+            padding: 5px;
+            text-align: center;
+            font-family: 'MedievalSharp', cursive;
+        }
+
+        .table_component td {
+            border: 1px solid #828282;
+            background-color: #444;
+            color: #E1D3B6;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem; /* This adds space between buttons */
+        margin-bottom: 1rem;
+        }
+
+
+
+        /* From Uiverse.io by zymantas-katinas */ 
+        .button {
+        position: relative;
+        border: none;
+        background: transparent;
+        padding: 0;
+        outline: none;
+        cursor: pointer;
+        font-family: sans-serif;
+        }
+
+        /* Shadow layer */
+        .button .shadow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
+        transform: translateY(2px);
+        transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+        }
+
+        /* Edge layer */
+        .button .edge {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        background: linear-gradient(
+            to left,
+            hsl(217, 33%, 16%) 0%,
+            hsl(217, 33%, 32%) 8%,
+            hsl(217, 33%, 32%) 92%,
+            hsl(217, 33%, 16%) 100%
+        );
+        }
+
+        /* Front layer */
+        .button .front {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 28px;
+        font-size: 1rem;
+        color: white;
+        background: hsl(217, 33%, 17%);
+        border-radius: 8px;
+        transform: translateY(-4px);
+        transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+        }
+
+        /* Hover and active states */
+        .button:hover .shadow {
+        transform: translateY(4px);
+        transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+        }
+
+        .button:hover .front {
+        transform: translateY(-6px);
+        transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+        }
+
+        .button:active .shadow {
+        transform: translateY(1px);
+        transition: transform 34ms;
+        }
+
+        .button:active .front {
+        transform: translateY(-2px);
+        transition: transform 34ms;
+        }
+
+        /* Disable text selection */
+        .button .front span {
+        user-select: none;
+        }
+
+        .main-button {
+            background: linear-gradient(145deg, var(--light-color), #d4c19a);
+            color: var(--dark-color);
+            border: 3px solid #8b7355;
+            padding: 20px 40px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            border-radius: 8px;
+            box-shadow: 
+                0 8px 16px rgba(0,0,0,0.3),
+                inset 0 2px 4px rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+            font-family: 'Cinzel', serif;
+        }
+
+        .main-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 12px 24px rgba(0,0,0,0.4),
+                inset 0 2px 4px rgba(255,255,255,0.3);
+        }
+
+        .main-button:active {
+            transform: translateY(0);
+            box-shadow: 
+                0 4px 8px rgba(0,0,0,0.3),
+                inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .overlay.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { 
+                transform: scale(0.8) translateY(-20px);
+                opacity: 0;
+            }
+            to { 
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .popup {
+            background: var(--light-color);
+            border: 4px solid #8b7355;
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.5),
+                inset 0 2px 4px rgba(255,255,255,0.2);
+            animation: slideIn 0.4s ease;
+            position: relative;
+            color: var(--dark-color);
+        }
+
+        .popup::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 20px;
+            background: linear-gradient(45deg, #8b7355, #a68660);
+            border-radius: 0 0 8px 8px;
+        }
+
+        .popup::after {
+            content: '⚔️';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+        }
+
+        .popup h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #8b2635;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .popup p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: var(--dark-color);
+            font-weight: 400;
+        }
+
+        .popup-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .popup-button {
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Cinzel', serif;
+            min-width: 120px;
+        }
+
+        .proceed-btn {
+            background: linear-gradient(145deg, #8b2635, #a13344);
+            color: var(--light-color);
+            border-color: #6b1d28;
+            box-shadow: 0 4px 8px rgba(139, 38, 53, 0.3);
+        }
+
+        .proceed-btn:hover {
+            background: linear-gradient(145deg, #a13344, #8b2635);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(139, 38, 53, 0.4);
+        }
+
+        .close-btn {
+            background: linear-gradient(145deg, #5a5a5a, #707070);
+            color: var(--light-color);
+            border-color: #404040;
+            box-shadow: 0 4px 8px rgba(90, 90, 90, 0.3);
+        }
+
+        .close-btn:hover {
+            background: linear-gradient(145deg, #707070, #5a5a5a);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(90, 90, 90, 0.4);
+        }
+
+        .popup-button:active {
+            transform: translateY(0);
+        }
+
+        .decorative-border {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 2px solid #8b7355;
+            border-radius: 8px;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        @media (max-width: 600px) {
+            .popup {
+                padding: 30px 20px;
+            }
+            
+            .popup h1 {
+                font-size: 2rem;
+            }
+            
+            .popup-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .popup-button {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+     <!-- HEADER START-->
+     <header class="header" id="header">
+        <nav class="nav container">
+            <a href="pambungad3.html" class="nav_logo">E-LINANGAN</a>
+
+            <div class="nav_menu" id="nav-menu">
+                <ul class="nav_list">
+                    <li class="nav_item">
+                        <a href="pambungad3.html" class="nav_link">
+                            <i class="ri-arrow-right-up-line"></i>
+                            <span>Pambungad</span>
+                        </a>
+                    </li>
+
+                    <li class="nav_item">
+                        <a href="aralin3.html" class="nav_link">
+                            <i class="ri-arrow-right-up-line"></i>
+                            <span>Nilalaman</span>
+                        </a>
+                    </li>
+
+                    <li class="nav_item">
+                        <a href="palaro3.html" class="nav_link">
+                            <i class="ri-arrow-right-up-line"></i>
+                            <span>Hamon</span>
+                        </a>
+                    </li>
+                </ul>
+
+            <!-- CLOSE BUTTON START -->
+            <div class="nav_close" id="nav-close">
+                <i class="ri-close-large-line"></i>
+             </div>
+            <!-- CLOSE BUTTON END -->
+            </div>
+
+            <!-- TOOGLE BUTTON START -->
+            <div class="nav_toggle" id="nav-toggle">
+                <i class="ri-menu-2-line"></i>
+             </div>
+            <!-- TOOGLE BUTTON END -->
+        </nav>
+     </header>
+    <!-- HEADER END -->
+
+    <div class="lesson-container">
+        <div class="decorative-elements">
+            🏛️⚔️🛡️
+        </div>
+
+        <header class="lesson-header">
+            <h1 class="lesson-title">Aralin 3: Pagbabagong Sosyo-Kultural</h1>
+        </header>
+
+        <section class="content">
+            <h2 class="section-title">Paglakas ng Simbahang Katoliko</h2>
+
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/MywlXg7Go6g?start=157" title="Roman Empire Fall" allowfullscreen></iframe>
+            </div>
+            
+            <p>Matapos ang hindi mabilang na pag-uusig sa mga sinaunang Kristiyano, dumating din ang panahon na malaya nilang isabuhay ang kanilang pananampalataya. May ilang mahahalang pangyayari ang nagbigay daan sa paglakas ng Simbahang Katoliko</p>
+            <p>Nagsimula kay <span class="clickable-term" onclick="showPopup('constantine')">Constantine the Great</span>  nang ipatupad niya ang <b><i>Edict of Milan</i></b> na nagpapahinto sa pag-uusig sa mga Kristiyano at nagbigay pahintulot sa Kristiyanismo at iba pang relihiyon sa Imperyong Roman noong 313 AD. Ito ay dahil sa pangitaing krus na nakita niya sa kalangitan bago sila nakipaglaban sa Tulay ng Milvian noong 312 AD.</p>
+            <p>Samantala, ipinagbawal ni <span class="clickable-term" onclick="showPopup('theodosiusi')">Theodosius I</span> ang lahat ng mga paganong relihiyon at ginawang opisyal na relihiyon ng imperyo ang <b><i>Kristiyanismo</i></b>. Pinalakas niya ang kapapahan (papacy) sa pamamagitan ng First Council at Constantinople kung saan napili ang Rome bilang pangunahing Diocese at ang Obispo ng Rome ang pinakamataas na pinuno ng Simbahang Romano Katoliko. Pangalawa lamang dito ang Constantinople.</p>
+            <p>Napagtagumpayan din ng simbahan ang ilang mga kontrobersya o <b><i>heresy</i></b> patungkol sa ilang mga turo nito. Ang heresy ay mga doktrinang pangrelihiyon na taliwas sa mga turo ng simbahan. Isa na diyan ang <b><i>Arianism</i></b> na kung saan itinuturo ni Arius na si Kristo, kahit na Anak ng Diyos ay hindi ganap ang kanyang kabanalan katulad ng sa Diyos Ama. Ipinatawag ang First Ecumenical Council at Nicaea noong 325 AD upang ayusin ang sigalot at ginamit ang “Nicene Creed” na nagpapatunay sa kabanalan ni Kristo. Gayundin ang <b><i>Nestorianism</i></b> na sinasabi ni Nestorius, isang Mongheng Syrian at Patriarch ng Constantinople na si Hesus ay may dalawang katangian – tao at banal. Sinabi rin niya na si Maria ay tao kung kaya’t hindi siya maaaring maging Ina ng Diyos. Ipinatigil ng Third Ecumenical Council at Ephesus ang kontrobersyang ito noong 431 AD. Panghuli, ang <b><i>Monophysitism</i></b> na nagsasabi na iisa lamang ang katangian ni Kristo – pagiging banal. Pinagtibay ito sa hindi opisyal na ecumenical council sa Ephesus noong 449 at idineklarang heresy ni Papa Leo I. Ang Fourth Ecumenical Council at Chalcedon noong 451 ang nagdeklara na ito ay hindi katanggap-tanggap.</p>
+            <p>Dahil sa mga pangyayaring ito, lalong lumaganap ang Kristiyanismo hindi lamang sa nasasakupan ng Imperyong Roman kundi pati sa Scandinavia, dulong bahagi ng Asya, at Silangang Africa.</p>
+            <p>Ang Kanlurang Europa ay pinamunuan ng <b>Roman Catholic Church</b> kung saan ang sentro nito ay sa Rome. Ilan sa mga tagumpay nito ang pagbibinyag kay Clovis at sa mga Frank, ang mga Irish (sa pamumuno ni St. Patrick), at ang mga Anglo at Saxon sa England (sa pamumuno ni St. Augustine ng Canterbury).</p>
+            <p>Sa Silangang Europa naman nakilala ang <b>Greek Orthodox Church</b> na ang sentro ay nasa Constantinople. Sila ang nakahikayat sa mga Serb, Bulgar, at Russian na maging Kristiyano.</p>
+
+        </section>
+
+        <section class="content">
+            <h2 class="section-title">Pagkakahati ng Simbahang Kristiyano</h2>
+
+            <div class="video-container">
+                <iframe   src="https://www.youtube.com/embed/trMsytBdawc?start=168"  title="Roman Empire Fall" allowfullscreen></iframe>
+            </div>
+            
+            <p>Sa unang bahagi ng panahon ng mga Kristiyano, nagkaroon ng tunggalian ang Rome at Constantinople para sa kapangyarihan sa relihiyon. Ang Papa o Obispo ng Rome ay inangkin ang kataas-taasang kapangyarihan sa buong simbahan. Samantala, ang Patriarch o Obispo ng Constantinople ay iginiit nito ang kanyang kapangyarihan sa mga usapin ng simbahan sa Silangan. Maliban dito, mayroon din silang magkaibang wika na ginagamit, paniniwala, at mga ritwal. Dahil sa hindi naayos ang kanilang hindi pagkakaunawaan, nahati ang Simbahang Kristiyano noong 1054. Ang Roman Catholic Church na ang sentro ay sa Rome at ang Greek Orthodox Church na ang sentro ay nasa Constantinople. Bagaman ang dalawa ay parehong tagapagtaguyod ng kristiyanismo, ay mayroon itong mga pagkakaiba.</p>
+
+            <div class="photo-container-aralin3">
+                <img src="images/aralin3table.jpg">
+            </div>
+        </section>
+
+        <section class="content">
+            <h2 class="section-title">Paglakas ng Kapapahan</h2>
+            
+            <p>Matapos bumagsak ang Rome, ang Obispo ng Rome ay naging makapangyarihang pinuno at pinaniniwalaang sila ang humalili sa mga Caesar ng Rome. Ang kapangyarihang ito ay mas kilala sa katawagang <b><i>Kapapahan (Papacy)</i></b>.</p>
+            <p>Dalawa ang pinagbabatayan ng kapangyarihang ito: una, ang kapangyarihan ng Papa na minana mula kay <b><i>San Pedro Apostol</i></b>, ang unang Obispo ng Rome na ayon sa Doktrinang Petrine; pangalawa, ang lungsod ng Rome, kahit matapos ang pagbagsak ng Kanlurang Imperyong Roman ay nananatiling sentro ng Kristiyanismo.</p>
+            <p>Ang Kapapahan (Papacy) ay ang tanggapan at ang nakasaklaw sa Obispo ng Rome. Ang papa (mula sa salitang Latin na papa na ibig sabihin ay “ama”) ang namumuno sa Simbahang Romano Katoliko. Ang katagang pope ay orihinal na tumutukoy sa lahat ng mga Obispo sa Kanluran at sa patriarch ng Alexandria. Subalit noong 1073, nilimitahan ni Papa Gregory VII ang paggamit nito at ginawa para lamang sa Obispo ng Rome.</p>
+            <p>Nakatulong sa pagpapalakas ng pundasyon ng Simbahang Katoliko Romano at Kapapahan ang maraming mga naging pinuno nito. Ilan lamang sa kanila ay ang sumusunod.</p>
+        
+
+            <div class="papal-container">
+        <div class="papal-grid">
+            <div class="papal-item">
+                <img src="images/papaleo.jpg" alt="Papa Leo The Great" class="papal-portrait">
+                <div class="papal-name"><span class="clickable-term" onclick="showPopup('papaleoi')">Papa Leo</span></div>
+                <div class="papal-title">The Great</div>
+            </div>
+            
+            <div class="papal-item">
+                <img src="images/papagelasius.jpg" alt="Papa Gelasius I" class="papal-portrait">
+                <div class="papal-name"><span class="clickable-term" onclick="showPopup('papagelasiusi')">Papa Gelasius I</span></div>
+            </div>
+            
+            <div class="papal-item">
+                <img src="images/papagregory.jpg" alt="Papa Gregory The Great" class="papal-portrait">
+                <div class="papal-name"><span class="clickable-term" onclick="showPopup('papagregoryi')">Papa Gregory</span></div>
+                <div class="papal-title">The Great</div>
+            </div>
+            
+            <div class="papal-item">
+                <img src="images/papanicholas.jpg" alt="Papa Nicholas II" class="papal-portrait">
+                <div class="papal-name"><span class="clickable-term" onclick="showPopup('papanicholasii')">Papa Nicholas II</span></div>
+            </div>
+            
+            <div class="papal-item">
+                <img src="images/papagregoryvii.jpg" alt="Papa Gregory VII" class="papal-portrait">
+                <div class="papal-name"><span class="clickable-term" onclick="showPopup('papagregoryvii')">Papa Gregory VII</span></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+        </section>
+
+        <section class="content">
+            <h2 class="section-title">Estruktura ng Simbahang Katoliko</h2>
+            
+            <p>Higit na maging maimpluwensiya ang Roman Catholic Church sa Kanlurang Europa dahil na rin sa kawalan ng makapangyarihang kaharian o imperyo. Samantala, ang Silangang Imperyong Roman kung saan naroon ang Greek Orthodox Church ay nagpapatuloy sa ilalim ng mga emperador ng Byzantine kung kaya’t kontrolado ang kapangyarihan nito.</p>
+            <p>Katulad ng mga hari, ang Simbahang Katoliko ay mayroong <b><i>hierarchy</i></b> o pamunuan ng simbahan.</p>
+       
+             <div class="triangle-container">
+                <div class="triangle-layer layer-1" class="clickable-term" onclick="showPopup('papa')"><p>Papa</p></div>
+                <div class="triangle-layer layer-2" class="clickable-term" onclick="showPopup('kardinal')"><p>Kardinal</p></div>
+                <div class="triangle-layer layer-3" class="clickable-term" onclick="showPopup('arsobispo')"><p>Arsobispo</p></div>
+                <div class="triangle-layer layer-4" class="clickable-term" onclick="showPopup('pari')"><p>Pari</p></div>
+            </div>
+
+            <p style="margin-top: 5rem;">Kasama sa istruktura ng Simbahang Katoliko ang mga lalaki at babaeng mas pinili na humiwalay sa kanilang kinagisnang buhay at pumasok sa mga <b><i>ordeng panrelihiyon</i></b>. Ang bawat order o orden ay namumuhay ayon sa mga natatanging hanay ng mga patakaran na kung tawagin ay regula. Samakatuwid, sila ay kilala rin sa tawag na mga paring regular. Ang mga miyembro nito ay nangangako ng tatlong bagay: <b>kahirapan, kalinisang-puri, at pagkamasunurin</b>. Ang mga kalalakihan ay kalimitang tinatawag na mga <b><i>monghe</i></b> at <b><i>prayle</i></b> habang ang mga babae naman ay tinatawag na <b><i>madre</i></b>. Naninirahan sila sa mga gusaling tinatawag na monasteryo. Ilan sa mga kilalang monastaryo ay ang Monastaryo ng Monte Cassino sa Italy, Iona sa Ireland, at Cluny sa Burgundy. Ang pagkakatatag ng mga monastaryo ay nagdulot sa pagsisimula ng kilusang pangrelihiyon na <b><i>monastisismo</i></b>. Ang monastisismo ay tumutukoy sa buhay ng pagtatanggi sa sarili at pamumuhay mag-isa o nakahiwalay sa nakararami upang ipagdasal ang kaligtasan ng kaluluwa ng tao.</p>
+        </section>
+
+        <section class="content">
+            <h2 class="section-title">Ang Paglunsad ng mga Krusada</h2>
+
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/Z7-oLm1Ysxk" title="Roman Empire Fall" allowfullscreen></iframe>
+            </div>
+            
+            <p>Habang marami ang nagaganap sa Europa, mayroong malaking pangyayari ang naganap sa Asya na ikinagulat ng mga Kristiyano sa Europa, ang pagbagsak ng <b>Banal na Lupain</b> sa kamay ng mga <b>Turkong Muslim</b> partikular na ang sinasabing paglapastangan sa Banal na Libingan ni Hesus at pagpaslang sa mga Kristiyano roon.</p>
+            <p>Inilunsad ang isang ekspedisyong militar na binubuo ng mga Kristiyanong kabalyero upang mabawi ang Banal na Lupain sa kamay ng mga Muslim at nakilala ito sa kasaysayan bilang <b>krusada</b>.</p>
+            <p>Ang salitang krusada ay nagmula sa salitang Latin na <b>“crux”</b> na nangangahulugang <b>“cross”</b>. Ibig sabihin, ang mga Krusador ay nagtataglay ng simbolo ng Krus sa kanilang kasuotan. Sa kabuuan, mayroong siyam (9) na krusada ang nailunsad mula 1095 hanggang 1291.</p>
+        
+            <div class="table_component" role="region" tabindex="0">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>MGA PANGUNAHING KRUSADA</th>
+                            <th>MGA MALILIIT NA KRUSADA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="clickable-term" onclick="showPopup('unangk')">Unang Krusada (1095-1099)</td>
+                            <td class="clickable-term" onclick="showPopup('kngmgabata')">Krusada ng mga Bata(1212)</td>
+                        </tr>
+                        <tr>
+                            <td class="clickable-term" onclick="showPopup('ikalawangk')">Ikalawang Krusada (1147-1149)</td>
+                            <td class="clickable-term" onclick="showPopup('ikalimangk')">Ikalimang Krusada (1217-1221)</td>
+                        </tr>
+                        <tr>
+                            <td class="clickable-term" onclick="showPopup('ikatlongk')">Ikatlong Krusada (1189-1192)</td>
+                            <td class="clickable-term" onclick="showPopup('ikaanimk')">Ikaanim na Krusada(1228-1229)</td>
+                        </tr>
+                        <tr>
+                            <td class="clickable-term" onclick="showPopup('ikaapatk')">Ikaapat na Krusada (1202-1204)</td>
+                            <td class="clickable-term" onclick="showPopup('ikapitongk')">Ikapitong Krusada(1248-1250)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="clickable-term" onclick="showPopup('ikawalongk')">Ikawalong Krusada(1270)</td>
+                        </tr>
+                    </tbody>
+               </table>
+            </div>
+        </section>
+
+        <section class="content">
+            <h2 class="section-title">Resulta ng mga Krusada</h2>
+
+            <p>Nasundan pa ng ibang krusada noong 1217, 1228, 1248, at 1270 ngunit pawang bigo ang mga ito na mabawi ang Banal na Lupain sa kamay ng mga Turkong Muslim maliban sa Unang Krusada. Nahawakan nila ang Jerusalem sa loob ng isang daang taon at pagkatapos muli itong naagaw ng Turkong Muslim.</p>
+            <p>Kung mayroon mang magandang bunga ang Krusada, ito ay sa larangan ng kalakalan na nagsilbing salik sa pag-unlad ng mga lungsod at malalaking daungan. Napalawak din ang kulturang Kristiyano.</p>
+            <p>Samantala, ibinunyag ng krusada ang tunay na mga hangarin ng mga sumali sa gawaing ito. Ang pagkakataong makapaglakbay at mangalakal, at hindi pagmamalasakit sa simbahan ang naging dahilan sa pagsama sa banal na laban.</p>
+
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/IoRegq53quk" title="Roman Empire Fall" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <div class="scroll-indicator" onclick="scrollToTop()">
+            <i class="fas fa-arrow-up"></i>
+        </div>
+    </div>
+
+    <!-- Popup Modals -->
+    <div id="popup-overlay" class="popup-overlay" onclick="closePopup()">
+        <div class="popup-content" onclick="event.stopPropagation()">
+            <button class="close-popup" onclick="closePopup()">&times;</button>
+            <h3 id="popup-title" class="popup-header"></h3>
+            
+            <!-- Enhanced Image Container -->
+            <div id="popup-image-container" class="popup-image-container">
+                <img id="popup-image" class="popup-image" src="" alt="Historical Image" style="display: none;">
+                <div id="image-placeholder" class="image-placeholder">
+                    <i class="fas fa-image"></i>
+                    <div class="image-placeholder-text">Walang available na larawan</div>
+                </div>
+            </div>
+            
+            <div id="popup-body" class="popup-body"></div>
+        </div>
+    </div>
+
+    <!-- From Uiverse.io by MuhammadHasann --> 
+    <div class="button-container">
+        <!-- From Uiverse.io by zymantas-katinas --> 
+        <a href="aralin2.html">
+            <button class="button">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <div class="front">
+                <span>↩ Bumalik</span>
+            </div>
+            </button>
+        </a>
+
+        <button class="button" onclick="openPopup()">
+        <span class="shadow"></span>
+        <span class="edge"></span>
+        <div class="front">
+            <span>Susunod ↪</span>
+        </div>
+        </button>
+    </div>
+
+    <!-- Pop-up Modal -->
+     <div class="overlay" id="overlay" onclick="closePopup()">
+        <div class="popup" onclick="event.stopPropagation()">
+            <div class="decorative-border"></div>
+            <h1>⚠️ Pagpugay ⚠️</h1>
+            <p>Kamusta ang iyong paglalakbay sa ating tatlong aralin? Kung gayon ay atin nang simulan ang pagwawakas ng ating paglalakbay, hinahamon kita na lagpasan mo ang iyong huling pagsubok, ang Pangwakas na Pagsusulit!</p>
+            <div class="popup-buttons">
+                <button class="popup-button proceed-btn" onclick="proceedToQuiz()">
+                    ⚔️ Tanggapin ang Hamon
+                </button>
+                <button class="popup-button close-btn" onclick="closePopup()">
+                    🛡️ Umatras
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Popup data - Replace with actual content from your reference
+        const popupData = {
+            'constantine': {
+                title: 'Constantine I (The Great)',
+                content: `
+                    <p><b>Ipinanganak: </b>Pebrero 27, 272 C.E.</p>
+                    <p><b>Namatay: </b>Mayo 22, 337</p>
+                    <p><b>Titulo: </b>Emperador ng Imperyong Romano (324-337)</p>
+                    <p><b>Kontribusyon sa Kristiyanismo: </b></p>
+                    <ul class="kontribusyon">
+                        <li>•	Nagpalabas ng <b><i>Edict of Milan</i></b> na nagbawal sa pag-usig sa mga kristiyano</li>
+                        <li>•	Ipinatawag ang Unang <b>Konseho ng Nicaea</b>, ang pinakaunang pandaigdigang konseho ng Kristiyanismo</li>
+                        <li>•	Pinangunahan ang pagpapatayo ng <b>orihinal</b> na <b>St. Peter’s Basilica at Church of the Holy Sepulchre</b> na naging sentro ng pananampalataya at pilgrimage ng mga Kristiyano</li>
+                        <li>•	Pinalitan ang Byzantium at naging <b>Constantinople</b> na siyang sentro ng Kristiyanismo sa Silangang Europa.</li>
+                    </ul>
+                    <p class="sanggunian"><b>Sanggunian:</b></p>
+                    <a href="https://www.britannica.com/biography/Constantine-I-Roman-emperor" target="_blank">Constantine I Biography | Britannica</a>
+                `,
+                image: 'images/constantinei.jpg' // No image for this example - will show placeholder
+            },
+            'theodosiusi': {
+                title: 'Theodosios I (The Great)',
+                content: `
+                    <p><b>Ipinanganak: </b>Enero 11, 347 C.E.</p>
+                    <p><b>Namatay: </b>Enero 17, 395</p>
+                    <p><b>Titulo: </b>Emperador ng Imperyong Romano (379-392)</p>
+                    <p><b>Kontribusyon sa Kristiyanismo: </b></p>
+                    <ul class="kontribusyon">
+                        <li>•	Inilabas ang <b>Edict of Thessalonica</b> na nagdeklara sa Kristiyanismo bilang opisyal na relihiyon ng ng Imperyong Romano</li>
+                        <li>•	Ipinatupad ang <b><i>Nicene Creed</b></i> bilang tanging ortodoksiyang Kristiyano</li>
+                    </ul>
+                    <p class="sanggunian"><b>Sanggunian:</b></p>
+                    <a href="https://www.britannica.com/biography/Theodosius-I" target="_blank">Theodosius I Biography | Britannica</a>
+                `,
+                image: 'images/theodosiusi.jpg' // No image for this example - will show placeholder
+            },
+            'papaleoi': {
+                title: 'Papa Leo I (The Great)',
+                content: `
+                    <p><b>Ipinanganak: </b>4th century C.E.</p>
+                    <p><b>Namatay: </b>Nobyembre 10, 461 (Rome, Italy)</p>
+                    <p><b>Titulo: </b>Papa (440-461)</p>
+                    <p><b>Kontribusyon:</b></p>
+                    <ul class="kontribusyon">
+                        <li>•	Iginiit niya ang Petrine Doctrine na nagsasaad na ang Obispo ng Rome ang tagapagmana ni San Pedro bilang tunay na pinuno ng kristiyanismo. </li>
+                        <li>•	Kinilala ang kapangyarihan ng Papa bilang pinakamataas na pinuno ng simbahan sa lahat ng mga Kristiyano sa Kanlurang Europa.</li>
+                    </ul>
+                    <p class="sanggunian"><b>Sanggunian:</b></p>
+                    <a href="https://www.britannica.com/biography/Saint-Leo-I" target="_blank">Papa Leo I Biography | Britannica</a>
+                `,
+                image: 'images/papaleo.jpg' // No image for this example - will show placeholder
+            },
+            'papagelasiusi': {
+                title: 'Papa Gelasius I',
+                content: `
+                    <p><b>Namatay: </b>Nobyembre 19, 496 (Rome, Italy)</p>
+                    <p><b>Titulo: </b>Papa (492-496)</p>
+                    <p><b>Kontribusyon:</b></p>
+                    <ul class="kontribusyon">
+                        <li>•	Nagbigay-diin sa ugnayan sa pagitan ni San Pedro at ang tanggapan ng Obispo ng Rome.</li>
+                        <li>•	Kauna-unahang papa na tinawag bilang “Vicar of Christ” (kinatawan o kahalili ni Kristo dito sa mundo)</li>
+                    </ul>
+                    <p class="sanggunian"><b>Sanggunian:</b></p>
+                    <a href="https://www.britannica.com/biography/Saint-Gelasius-I" target="_blank">Papa Gelasius I Biography | Britannica</a>
+                `,
+                image: 'images/papagelasius.jpg' // No image for this example - will show placeholder
+            },
+            'papagregoryi': {
+                title: 'Papa Gregory I (The Great)',
+                content: `
+                    <p><b>Ipinanganak: </b> Burgundy, France</p>
+                    <p><b>Namatay: </b>Hulyo 1061 (Rome, Italy)</p>
+                    <p><b>Titulo: </b>Papa (1058-1061)</p>
+                    <p><b>Kontribusyon:</b></p>
+                    <ul class="kontribusyon">
+                        <li>•	Inilabas niya ang In Nomine Domini o ang dikri na nagsasaad ng paghahalal ng bagong papa noong 1059.</li>
+                        <li>•	Kanyang isinaayos na magmumula sa ibinoto ng Sacred College of Cardinals ang bagong papa sa sandaling ito ay mamatay.</li>
+                    </ul>
+                    <p class="sanggunian"><b>Sanggunian:</b></p>
+                    <a href="https://www.britannica.com/biography/St-Gregory-the-Great" target="_blank">Papa Gregory I Biography | Britannica</a>
+                `,
+                image: 'images/papagregory.jpg' // No image for this example - will show placeholder
+            },
+            
+            'papanicholasii': {
+                title: 'Papa Nicholas II',
+                content: `
+                    <p><b>Ipinanganak: </b> 540 C.E.</p>
+                    <p><b>Namatay: </b>Marso 12, 604 (Rome, Italy)</p>
+                    <p><b>Titulo: </b>Papa (590-604)</p>
+                    <p><b>Kontribusyon:</b></p>
+                    <ul class="kontribusyon">
+                        <li>•	Ang nagtatag ng Kapapahan o Papacy. </li>
+                        <li>•	Nagawa niyang sumampalataya ang iba’t ibang mga barbarong tribo (Anglo-Saxons) at mapalaganap sa malalayong lugar sa Kanlurang Europa ang Kristiyanismo (Ireland, Scotland, at Germany).</li>
+                    </ul>
+                    <p class="sanggunian"><b>Sanggunian:</b></p>
+                    <a href="https://www.britannica.com/biography/Nicholas-II-pope" target="_blank">Papa Nicholas II Biography | Britannica</a>
+                `,
+                image: 'images/papanicholas.jpg' // No image for this example - will show placeholder
+            },
+            'papagregoryvii': {
+                title: 'Papa Gregory VII',
+                content: `
+                    <p><b>Ipinanganak: </b> 1025 C.E.</p>
+                    <p><b>Namatay: </b>Mayo 25, 1085 (Salerno, Italy)</p>
+                    <p><b>Titulo: </b>Papa (1073-1085)</p>
+                    <p><b>Kontribusyon:</b></p>
+                    <ul class="kontribusyon">
+                        <li>•	Tinanggal niya ang karapatan ng hari na magtalaga ng sinumang pinuno ng simbahan pati na rin ang pagbili o pagbenta ng mga tanggapan sa simbahan na tinatawag na simony.</li>
+                    </ul>
+                    <p class="sanggunian"><b>Sanggunian:</b></p>
+                    <a href="https://www.britannica.com/biography/Saint-Gregory-VII" target="_blank">Papa Gregory VII Biography | Britannica</a>
+                `,
+                image: 'images/papagregoryvii.jpg' // No image for this example - will show placeholder
+            },
+            'papa': {
+                title: 'Papa',
+                content: `
+                    <ul class="kontribusyon">
+                        <li>•	Ang pinakamataas na pinuno ng Simbahang Katoliko</li>
+                        <li>•	Nakatira siya sa Vatican sa Rome</li>
+                        <li>•	Siya ay itinuturing tagapagmana ni <b>San Pedro Apostol</b>, ang unang Obispo ng Rome</li>
+                        <li>•	Mula pa noong ika-11 siglo, ang bawat Papa ay inihahalal panghabambuhay ng <b>College of Cardinals</b></li>
+                    </ul>
+                    <p class="sanggunian"><b>Sanggunian:</b></p>
+                    <a href="https://shop.catholicsupply.com/resize/Shared/Images/Product/Pope-Leo-XIV-in-White-Official-Portrait-Print/PRI-1879.jpg?" target="_blank"><b>Papa Leo XIV</b> (ang kasalukuyang Santo Papa ng Simbahang Katoliko) | Ang Nasa Larawan</a>
+                `,
+                image: 'images/papa.jpg' // No image for this example - will show placeholder
+            },
+            'kardinal': {
+                title: 'Kardinal',
+                content: `
+                    <ul class="kontribusyon">
+                        <li>•	Tinatawag silang mga <b>"Prinsipe ng Simbahan"</b></li>
+                        <li>•	Sila ay mga obispo o arsobispo na itinalaga ng Papa upang maging tagapayo nito.</li>
+                        <li>•	Sa kanilang hanay nagmumula ang papalit na papa kapag ito ay nagbitiw sa tungkulin o di kaya ay namatay. Ayon sa <b>Third Council of the Lateran</b> (1179), kinakailangan na mayroong 2/3 na boto ang makuha ng isang kardinal sa <i><b>Papal Conclave</b></i> para siya ay maging Papa.</li>
+                    </ul>
+                    <p class="sanggunian"><b>Sanggunian:</b></p>
+                    <a href="https://wp.en.aleteia.org/wp-content/uploads/sites/2/2024/12/Cardinals-as-far-as-the-eye-can-see.jpg?resize=620,350&q=75" target="_blank"><b>College of Cardinals</b> | Ang Nasa Larawan</a>
+                `,
+                image: 'images/collegeofcardinals.png' // No image for this example - will show placeholder
+            },
+            'arsobispo': {
+                title: 'Arsobispo',
+                content: `
+                    <ul class="kontribusyon">
+                        <li>•	Ang bawat bansa ay hinahati sa mga lalawigang <b><i>ecclesiastical</i></b> o distritong panrelihiyon na kung tawagin ay diocese na pinamumunuan ito ng isang <b><i>obispo</i></b>.</li>
+                        <li>•	Samantala, may mga mahahalagang diocese na kung tawagin ay <b><i>archdiocese</i></b> at pinamumunuan ito ng <b><i>arsobispo</i></b>. </li>
+                        <li>•	Nananahan sa katedral ang isang obispo o arsobispo dahil nagmula ito sa salitang <b><i>cathedra</i></b> na nangangahulugang "trono".</li>
+                        <li>•	Gumagawa sila ng mga tagubilin o <b><i>apostolic letter</i></b> sa kanilang nasasakupan at nag-oordina sila ng mga bagong pari.</li>
+                    </ul>
+                    <p class="sanggunian"><b>Sanggunian:</b></p>
+                    <a href="https://archdioceseofpalo.org/wp-content/uploads/2018/07/Abp-John.jpg" target="_blank"><b>Most Reverend John F. Du</b> (Arsobispo ng Palo, Leyte) | Ang Nasa Larawan</a>
+                `,
+                image: 'images/johnfdu.jpg' // No image for this example - will show placeholder
+            },
+            'pari': {
+                title: 'Pari',
+                content: `
+                    <ul class="kontribusyon">
+                        <li>•	Sila ang direktang namamahala sa mga lokal na pamayanan o <b>parokya</b>.</li>
+                        <li>•	Sila ang gumagabay at naglilingkod sa mga taong mananampalataya na kung tawagin ay <b><i>laiko (layman)</i></b>.</li>
+                        <li>•	Sa kasalukuyan, may mga pari na nabibilang sa pangkat sekular o diocesan at mga pari na regular o mayroong orden na kinabibilangan.</li>
+                    </ul>
+                    <p class="sanggunian"><b>Sanggunian:</b></p>
+                    <a href="https://roxascity.gov.ph/wp-content/uploads/2024/05/Ordination-of-the-Sacred-Order-of-Priesthood_6.jpg" target="_blank">Ordination of the Sacred Order of Priesthood | Ang Nasa Larawan</a>
+                `,
+                image: 'images/pari.png' // No image for this example - will show placeholder
+            },
+            'unangk': {
+                title: 'UNANG KRUSADA (1095-1099)',
+                content: `
+                    <p>Inilunsad ang Unang Krusada noong Nobyembre 25, 1095 sa pamamagitan ni Papa Urban II sa Clermont, France. Isinamo niya sa mga maharlika, kabalyero, monghe, at mga karaniwang tao ang pagnanais niyang maibalik sa kamay ng mga Kristiyano ang Banal na Lupain mula sa kamay ng mga Muslim. Ang panatikong si Peter, ang Ermitanyo ay naglibot sa bawat lungsod na nakabihis ng isang peregrino at may buhat-buhat na krus ay nangaral patungkol sa kaniyang nasaksihan sa Jerusalem, Israel.
+                        Pagsapit ng tagsibol ng 1096, naglakbay ang may 300,000 crusader patungong Palestine. Binagtas nila ang kabundukan ng Balkan at mga disyerto ng Asia Minor hanggang sa matagumpay nilang nabawi ang Jerusalem sa kamay ng mga Muslim. Kaagad nilang itinatag ang Kaharian ng Jerusalem at si <b>Godfrey ng Bouillon</b>, ang kauna-unahang hari nito.
+                    </p>
+
+                    <p class="sanggunian"><b>Sanggunian:</b></p>
+                    <a href="https://www.youtube.com/watch?v=Y4dHTndKJ1k" target="_blank">Ang Kasaysayan Ng Unang Krusada | YouTube</a>
+                `,
+                image: 'images/unangk.webp' // No image for this example - will show placeholder
+            },
+            'kngmgabata': {
+                title: 'KRUSADA NG MGA BATA (1212)',
+                content: `
+                    <p>Noong 1212 pinangunahan ni <b>Stephen</b> ng Cloyes ang Krusada ng mga Bata. Siya ay isang French at labindalawang taong gulang lamang. Siya ay naniwala na tinawag ni Kristo na mamuno ng krusada. Libo-libong mga bata ang sumunod sa kaniya ngunit karamihan sa kanila ay nagkasakit, nasawi sa karagatan at ang iba ay ipinagbili bilang alipin sa Alexandria. Sinasabing ang krusadang ito ay hindi opisyal na inilunsad ng Papa ng Rome.</p>
+
+                    <p class="sanggunian"><b>Sanggunian:</b></p>
+                    <a href="https://www.youtube.com/watch?v=3wwGBgkFTEM&t=36s" target="_blank">The Tragic Story of Children's Crusade of 1212 | YouTube</a>
+                `,
+                image: 'images/kngmgabata.jpeg' // No image for this example - will show placeholder
+            },
+            'ikalawangk': {
+                title: 'IKALAWANG KRUSADA (1147-1149)',
+                content: `
+                    <p>Nailunsad naman ang ikalawang krusada mula sa pangangaral ni <b>St. Bernard ng Clairvaux</b> noong 1147. Pinamunuan ito nina <b>Haring Louis VII</b> ng France at <b>Emperor Conrad II</b> ng Germany. Maraming sagabal na naranasan ng pangkat, napagtagumpayan nila ang pagsakop ng Damascus, Syria. Subalit, sa kabuuan ay isa itong bigong krusada.</p>
+
+                    <p class="sanggunian"><b>Sanggunian:</b></p>
+                    <a href="https://www.youtube.com/watch?v=o1-jwW-cB2E" target="_blank">Ang Kasaysayan ng Ikalawang Krusada | YouTube</a>
+                `,
+                image: 'images/ikalawangk.jpeg' // No image for this example - will show placeholder
+            },
+            'ikalimangk': {
+                title: 'IKALIMANG KRUSADA (1217-1221)',
+                content: `
+                    <p>Isinagawa ng mga Europeo upang mabawi ang Jerusalem sa pamamagitan ng pagsakop muna sa Egypt, na itinuturing nilang susi sa Banal na Lupain. Pinangunahan ito nina Haring Andrew II ng Hungary at Leopold VI ng Austria. Matagumpay nilang nasakop ang lungsod ng Damietta ngunit tinanggihan ang alok na kapayapaan ng Sultan Al-Kamil. Sa huli, natalo sila sa labanan sa Mansurah at napilitang umatras mula sa Egypt.</p>
+
+                    <p class="sanggunian"><b>Sanggunian:</b></p>
+                    <a href="https://www.youtube.com/watch?v=aw2FSDCmU5E" target="_blank">The Fifth Crusade: Egypt Instead of the Holy Land | YouTube</a>
+                `,
+                image: 'images/ikalimangk.webp' // No image for this example - will show placeholder
+            },
+            'ikatlongk': {
+                title: 'IKATLONG KRUSADA (1189-1192)',
+                content: `
+                    <p>Noong 1187 sinakop ni <b>Saladin</b> ang Jerusalem at paglipas ng dalawang taon lahat ng Crusader States ay bumagsak sa mga kamay ng mga Turkong Muslim. Tinugon ito ng Ikatlong Krusada na pinangunahan nina <b>Haring Richard I “the Lion-Hearted”</b> ng England, <b>Haring Philip Augustus</b> ng France, at <b>Emperador Frederick Barbarossa</b> ng Banal na Imperyong Romano. Tinawag ang krusadang ito na <b>“Krusada ng mga Hari”</b>. Ito ay inilunsad noong 1189 upang bawiin ang Jerusalem.</p>
+                    <p>Si Richard I lamang ang humarap kay Saladin. Si Frederick ay nalunod habang tumatawid sa isang ilog sa Asia Minor at si Philip naman ay bumalik sa France dahil nag-away sila ni Richard. Sa kahuli-hulihan nagkasundo sila Richard I at Saladin na itigil ang labanan. Sa loob ng tatlong taon malayang nakapaglakbay sa Jerusalem ang mga Kristiyano at binigyan pa sila ng maliit na lupain malapit sa baybayin.</p>
+
+                    <p class="sanggunian"><b>Sanggunian:</b></p>
+                    <a href="https://www.youtube.com/watch?v=PMWKZE39TC0" target="_blank">Ang Kasaysayan ng Ikatlong Krusada | YouTube</a>
+                `,
+                image: 'images/ikatlongk.webp' // No image for this example - will show placeholder
+            },
+            'ikaanimk': {
+                title: 'IKAANIM NA KRUSADA (1228-1229)',
+                content: `
+                    <p>Pinangunahan ni Emperador Frederick II ng Holy Roman Empire, ang krusadang ito ay natatangi dahil sa diplomasya kaysa digmaan. Bagamat excommunicated ng Papa, nakipagkasundo si Frederick kay Sultan Al-Kamil ng Egypt at nakuha ang Jerusalem, Bethlehem, at Nazareth para sa mga Kristiyano sa pamamagitan ng Treaty of Jaffa</p>
+
+                    <p class="sanggunian"><b>Sanggunian:</b></p>
+                    <a href="https://www.youtube.com/watch?v=5KTLRireJz4" target="_blank">The Sixth Crusade: The Crusade for Peace | YouTube</a>
+                `,
+                image: 'images/ikaanimk.jpeg' // No image for this example - will show placeholder
+            },
+            'ikaapatk': {
+                title: 'IKAAPAT NA KRUSADA (1202-1204)',
+                content: `
+                    <p>Noong 1202 inilunsad ang Ikaapat na Krusada sa panawagan ni <b>Papa Innocent III</b>. Ang krusadang ito ay naging isang iskandalo. Ang mga krusador ay hinikayat ng mga mangangalakal ng Venice na agawin ang Kristiyanong bayan ng Zara, ang karibal nila sa kalakalan at komersiyo sa Constantinople. Nagalit ang Papa sa ginawa nilang ito kaya sila ay idineklarang excommunicado ngunit nagpatuloy pa rin sa pangdarambong ang mga krusador hanggang sa Constantinople kung saan nagtayo sila ng sariling pamahalaan.</p>
+                    <p>Napatalsik sila sa Constantinople noong 1261 at muling naibalik ang Imperyong Byzantine. Subalit nagsimulang humina ang krusada nang mapasakamay ng mga Muslim ang Acre, ang huling kutang Kristiyano.</p>
+
+                    <p class="sanggunian"><b>Sanggunian:</b></p>
+                    <a href="https://www.youtube.com/watch?v=x0OEWOhyt5c" target="_blank">The Fourth Crusade: Betrayal and the Sack | YouTube</a>
+                `,
+                image: 'images/ikaapatk.jpeg' // No image for this example - will show placeholder
+            },
+            'ikapitongk': {
+                title: 'IKAPITONG KRUSADA (1248-1250)',
+                content: `
+                    <p>Muling pinangunahan ni Haring Louis IX ng France, layunin nitong sakupin ang Egypt upang muling makuha ang Jerusalem. Matagumpay nilang nasakop ang Damietta ngunit natalo sa Mansurah noong 1250. Nahuli si Louis IX at pinalaya kapalit ng ransom. Nanatili siya sa Banal na Lupain ng apat na taon upang palakasin ang mga Kristiyanong teritoryo.</p>
+
+                    <p class="sanggunian"><b>Sanggunian:</b></p>
+                    <a href="https://www.youtube.com/watch?v=fEDKuwe8FS0" target="_blank">The Seventh Crusade: The Ransom of a King | YouTube</a>
+                `,
+                image: 'images/ikapitongk.webp' // No image for this example - will show placeholder
+            },
+            'ikawalongk': {
+                title: 'IKAWALONG KRUSADA (1270)',
+                content: `
+                    <p>Huling krusada ni Louis IX, na naglayong salakayin ang Tunisia bilang panimulang hakbang sa muling pagsakop sa Jerusalem. Ngunit bago pa man magsimula ang kampanya, namatay si Louis sa sakit (dysentery), kaya’t nauwi sa negosasyon at pag-uwi ng mga Krusader. Wala itong nakamit na teritoryal na tagumpay ngunit nagbukas ng kalakalan sa pagitan ng Tunisia at Europa.</p>
+
+                    <p class="sanggunian"><b>Sanggunian:</b></p>
+                    <a href="https://www.youtube.com/watch?v=qyj7wqdNjG8" target="_blank">The Eighth Crusade: A Concise Overview for Students | YouTube</a>
+                `,
+                image: 'images/ikawalongk.jpeg' // No image for this example - will show placeholder
+            },
+        };
+
+        function showPopup(key) {
+            const data = popupData[key];
+            if (data) {
+                document.getElementById('popup-title').textContent = data.title;
+                document.getElementById('popup-body').innerHTML = data.content;
+                
+                const imageElement = document.getElementById('popup-image');
+                const placeholderElement = document.getElementById('image-placeholder');
+                
+                if (data.image && data.image.trim() !== '') {
+                    // Show image
+                    imageElement.src = data.image;
+                    imageElement.style.display = 'block';
+                    placeholderElement.style.display = 'none';
+                    
+                    // Handle image load error
+                    imageElement.onerror = function() {
+                        imageElement.style.display = 'none';
+                        placeholderElement.style.display = 'flex';
+                    };
+                } else {
+                    // Show placeholder
+                    imageElement.style.display = 'none';
+                    placeholderElement.style.display = 'flex';
+                }
+                
+                document.getElementById('popup-overlay').style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closePopup() {
+            document.getElementById('popup-overlay').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Close popup with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closePopup();
+            }
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.content');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(el);
+            });
+        });
+    </script>
+
+    <script>
+        function openPopup() {
+            document.getElementById('overlay').classList.add('active');
+        }
+
+        function closePopup() {
+            document.getElementById('overlay').classList.remove('active');
+        }
+
+        function proceedToQuiz() {
+            window.location.href = "paunangPagsusulit.html";
+            closePopup(); // if you're hiding a modal or popup
+        }
+
+
+        // Close popup when pressing Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closePopup();
+            }
+        });
+    </script>
+
+    <script src="js-files/index.js"></script>
+</body>
+</html>

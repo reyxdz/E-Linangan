@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paunang Pagsusulit</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@700&display=swap');
+        
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cinzel', serif;
+    background: linear-gradient(135deg, #2c1810 0%, #4a3426 100%);
+    min-height: 100vh;
+    color: #010101;
+    overflow-x: hidden;
+}
+
+.parchment-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 20%, rgba(225, 211, 182, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(139, 115, 85, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.game-header {
+    text-align: center;
+    margin-bottom: 30px;
+    background: linear-gradient(145deg, #E1D3B6, #d4c19a);
+    border: 3px solid #8b7355;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4),
+                inset 0 2px 5px rgba(255, 255, 255, 0.2);
+}
+
+.game-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1rem, 5vw, 3rem);
+    color: #8b2635;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.game-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: #010101;
+    opacity: 0.8;
+    font-weight: 600;
+}
+
+.stats-panel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: linear-gradient(145deg, #E1D3B6, #d4c19a);
+    border: 2px solid #8b7355;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #8b2635;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #010101;
+}
+
+.timer {
+    color: #8b2635 !important;
+    font-weight: 700;
+}
+
+.timer.warning {
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.question-card {
+    background: linear-gradient(145deg, #E1D3B6, #d4c19a);
+    border: 3px solid #8b7355;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    min-height: 400px;
+    position: relative;
+}
+
+.question-card::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border: 2px solid #8b7355;
+    border-radius: 8px;
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+.question-number {
+    font-size: 1rem;
+    color: #8b2635;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.question-text {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    line-height: 1.6;
+    margin-bottom: 25px;
+    color: #010101;
+    text-align: center;
+    font-weight: 400;
+}
+
+.answers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+.answer-btn {
+    background: linear-gradient(145deg, #5a5a5a, #707070);
+    border: 2px solid #404040;
+    border-radius: 10px;
+    padding: 15px 20px;
+    color: #E1D3B6;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.answer-btn:hover {
+    background: linear-gradient(145deg, #707070, #5a5a5a);
+    border-color: #8b7355;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.answer-btn.selected {
+    background: linear-gradient(145deg, #8b2635, #a13344);
+    border-color: #8b2635;
+    color: #E1D3B6;
+    font-weight: 600;
+}
+
+.answer-btn.correct {
+    background: linear-gradient(145deg, #228b22, #32cd32);
+    border-color: #90ee90;
+    color: white;
+}
+
+.answer-btn.incorrect {
+    background: linear-gradient(145deg, #dc143c, #ff6b6b);
+    border-color: #ffb6c1;
+    color: white;
+}
+
+.answer-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.control-panel {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    background: linear-gradient(145deg, #8b2635, #a13344);
+    border: 2px solid #6b1d28;
+    border-radius: 8px;
+    padding: 12px 25px;
+    color: #E1D3B6;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 8px rgba(139, 38, 53, 0.3);
+}
+
+.btn:hover {
+    background: linear-gradient(145deg, #a13344, #8b2635);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(139, 38, 53, 0.4);
+}
+
+.btn:disabled {
+    background: #5a5a5a;
+    border-color: #404040;
+    color: #999;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.results-panel {
+    background: linear-gradient(145deg, #E1D3B6, #d4c19a);
+    border: 3px solid #8b7355;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    position: relative;
+}
+
+.results-panel::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border: 2px solid #8b7355;
+    border-radius: 8px;
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+.results-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    color: #8b2635;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.final-score {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #010101;
+    font-weight: 600;
+}
+
+.rank-title {
+    font-size: 1.8rem;
+    color: #8b2635;
+    margin-bottom: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.rank-description {
+    font-size: 1.1rem;
+    color: #010101;
+    opacity: 0.8;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.hidden {
+    display: none;
+}
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .game-header {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+            
+            .question-card {
+                padding: 20px;
+                min-height: 350px;
+            }
+            
+            .answers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .answer-btn {
+                min-height: 70px;
+            }
+            
+            .control-panel {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="parchment-bg"></div>
+    
+    <div class="container">
+        <div class="game-header">
+            <h1 class="game-title">⚔️ Paunang Pagsusulit ⚔️</h1>
+            <p class="game-subtitle">Hinahamon ko ang talas ng iyong kaalaman!</p>
+        </div>
+        
+        <div class="stats-panel">
+            <div class="stat-card">
+                <div class="stat-label">Katanungan</div>
+                <div class="stat-value" id="questionCounter">1 / 10</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Iskor</div>
+                <div class="stat-value" id="scoreDisplay">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Natitirang Oras</div>
+                <div class="stat-value timer" id="timeDisplay">30</div>
+            </div>
+        </div>
+        
+        <div id="gameArea">
+            <div class="question-card">
+                <div class="question-number" id="questionNumber">Katanungan 1 sa 10</div>
+                <div class="question-text" id="questionText">Naglalakbay pa...</div>
+                <div class="answers-grid" id="answersGrid">
+                    <!-- Answers will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <div class="control-panel">
+                <button class="btn" id="restartBtn"></button>
+                <button class="btn" id="nextBtn" disabled>Kasunod na Tanong</button>
+            </div>
+        </div>
+        
+        <div id="resultsArea" class="hidden">
+            <div class="results-panel">
+                <h2 class="results-title">Nalagpasan mo ang aking hamon!</h2>
+                <div class="final-score" id="finalScore">Your Score: 0/10</div>
+                <div class="rank-title" id="rankTitle">Napakahina!</div>
+                <div class="rank-description" id="rankDescription">Tiyak na marami kang matututunan sa ating paglalakbay!</div>
+                <div class="control-panel">
+                    <button href="paunangPagsusulit.html" class="btn" id="playAgainBtn">Subukang Muli</button>
+                    <button class="btn"><a href="aralin1.html" style="text-decoration: none; color: black;">Simulan ang Paglalakbay</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <script>
+        class SoundManager {
+            constructor() {
+                this.isInitialized = false;
+                this.sounds = {};
+            }
+            
+            async initialize() {
+                if (this.isInitialized) return;
+                
+                try {
+                    await Tone.start();
+                    this.createSounds();
+                    this.isInitialized = true;
+                } catch (error) {
+                    console.log('Audio initialization failed:', error);
+                }
+            }
+            
+            createSounds() {
+                // Medieval bell sound for correct answers
+                this.sounds.correct = new Tone.Synth({
+                    oscillator: { type: "sine" },
+                    envelope: { attack: 0.1, decay: 0.3, sustain: 0.3, release: 1.2 }
+                }).toDestination();
+                
+                // Deep horn sound for incorrect answers
+                this.sounds.incorrect = new Tone.Synth({
+                    oscillator: { type: "sawtooth" },
+                    envelope: { attack: 0.2, decay: 0.1, sustain: 0.1, release: 0.8 }
+                }).toDestination();
+                
+                // Sword clang for button clicks
+                this.sounds.click = new Tone.NoiseSynth({
+                    noise: { type: "white" },
+                    envelope: { attack: 0.005, decay: 0.1, sustain: 0 }
+                }).toDestination();
+                
+                // Timer tick sound
+                this.sounds.tick = new Tone.Synth({
+                    oscillator: { type: "square" },
+                    envelope: { attack: 0.01, decay: 0.1, sustain: 0, release: 0.1 }
+                }).toDestination();
+                
+                // Victory fanfare
+                this.sounds.victory = new Tone.Synth({
+                    oscillator: { type: "triangle" },
+                    envelope: { attack: 0.1, decay: 0.2, sustain: 0.5, release: 1.0 }
+                }).toDestination();
+                
+                // Game start sound
+                this.sounds.gameStart = new Tone.Synth({
+                    oscillator: { type: "sine" },
+                    envelope: { attack: 0.3, decay: 0.2, sustain: 0.3, release: 0.8 }
+                }).toDestination();
+            }
+            
+            async playCorrect() {
+                if (!this.isInitialized) return;
+                // Medieval bell sequence
+                this.sounds.correct.triggerAttackRelease("C5", "8n");
+                setTimeout(() => this.sounds.correct.triggerAttackRelease("E5", "8n"), 150);
+                setTimeout(() => this.sounds.correct.triggerAttackRelease("G5", "4n"), 300);
+            }
+            
+            async playIncorrect() {
+                if (!this.isInitialized) return;
+                // Deep horn sound
+                this.sounds.incorrect.triggerAttackRelease("C2", "2n");
+            }
+            
+            async playClick() {
+                if (!this.isInitialized) return;
+                // Quick metallic sound
+                this.sounds.click.triggerAttackRelease("16n");
+            }
+            
+            async playTick() {
+                if (!this.isInitialized) return;
+                this.sounds.tick.triggerAttackRelease("C4", "32n");
+            }
+            
+            async playVictory() {
+                if (!this.isInitialized) return;
+                // Victory fanfare sequence
+                const notes = ["C4", "E4", "G4", "C5"];
+                notes.forEach((note, i) => {
+                    setTimeout(() => this.sounds.victory.triggerAttackRelease(note, "4n"), i * 200);
+                });
+            }
+            
+            async playGameStart() {
+                if (!this.isInitialized) return;
+                // Ascending medieval tune
+                const notes = ["G3", "A3", "B3", "C4"];
+                notes.forEach((note, i) => {
+                    setTimeout(() => this.sounds.gameStart.triggerAttackRelease(note, "8n"), i * 150);
+                });
+            }
+        }
+
+        class MedievalQuiz {
+            constructor() {
+                this.soundManager = new SoundManager();
+                this.questions = [
+                    {
+                        question: "Ano ang tawag sa sistemang pang-ekonomiya kung saan ang manor ang sentro ng buhay?",
+                        answers: ["Merkatilismo", "Manoryalismo", "Piyudalismo", "Kapitalismo"],
+                        correct: 1
+                    },
+                    {
+                        question: "Sino ang itinuturing na pinakamakapangyarihang pinuno ng Simbahang Katoliko sa Gitnang Panahon?",
+                        answers: ["Arsobispo", "Papa", "Obispo", "Kardinal"],
+                        correct: 1
+                    },
+                    {
+                        question: "Ano ang pangunahing layunin ng Krusada?",
+                        answers: ["Palawakin ang teritoryo ng Pransiya", "Bawiin ang Banal na Lupain mula sa mga Muslim", "Magtatag ng bagong relihiyon", "Magpalaganap ng sining"],
+                        correct: 1
+                    },
+                    {
+                        question: "Ano ang naging papel ng Simbahang Katoliko sa Gitnang Panahon?",
+                        answers: ["Tagapagtanggol ng mga Muslim", "Sentro ng kapangyarihang espiritwal at politikal", "Tagapagtatag ng mga lungsod", "Tagapagsimula ng Renaissance"],
+                        correct: 1
+                    },
+                    {
+                        question: "Ano ang tawag sa pamumuno ng mga panginoong maylupa sa kanilang mga nasasakupan?",
+                        answers: ["Demokrasya", "Piyudalismo", "Monarkiya", "Oligarkiya"],
+                        correct: 1
+                    },
+                    {
+                        question: "Ano ang naging papel ng mga kabalyero sa sistemang piyudal?",
+                        answers: ["Tagapagtanggol ng manor at tagapagsilbi sa panginoong maylupa", "Tagapagturo ng relihiyon", "Tagapamahala ng lungsod", "Tagapagpatayo ng simbahan"],
+                        correct: 0
+                    },
+                    {
+                        question: "Ano ang ibig sabihin ng “fief” sa sistemang piyudalismo?",
+                        answers: ["Serbisyong panrelihiyon", "Lupaing ipinagkakaloob sa basalyo kapalit ng serbisyo", "Templo ng mga pari", "Palasyo ng hari"],
+                        correct: 1
+                    },
+                    {
+                        question: "Siya ang kinikilala bilang ang unang emperador ng Banal na Imperyong Romano?",
+                        answers: ["Charlemagne", "Otto I", "Clovis I", "Pepin II"],
+                        correct: 0
+                    },
+                    {
+                        question: "Ito ang kasunduan na humati sa imperyo ni Charlemagne?",
+                        answers: ["Kasunduan ng Paris", "Kasunduan ng Verdun", "Kasunduan ng Roma", "Kasunduan ng Versailles"],
+                        correct: 1
+                    },
+                    {
+                        question: "Ano ang pangunahing yaman ng panginoon sa sistemang manoryal?",
+                        answers: ["Ginto at pilak", "Buwis mula sa mga serf", "Kita mula sa kalakalan", "Kita mula sa kalakalan"],
+                        correct: 3
+                    },
+                    {
+                        question: "Sino ang tumatanggap ng lupa mula sa panginoong maylupa sa sistemang piyudal?",
+                        answers: ["Basalyo", "Serf", "Hari", "Pari"],
+                        correct: 0
+                    },
+                    {
+                        question: "Anong dinastiya ang pinagmulan ng Banal na Imperyong Romano?",
+                        answers: ["Carolingian", "Merovingian", "Saxon", "Habsburg"],
+                        correct: 0
+                    },
+                    {
+                        question: "Ano ang tawag sa pinuno ng Banal na Imperyong Romano?",
+                        answers: ["Emperador", "Papa", "Basalyo", "Panginoong Maylupa"],
+                        correct: 0
+                    },
+                    {
+                        question: "Ano ang tawag sa mga alagad ng simbahan na maaaring secular o regular?",
+                        answers: ["Basalyo", "Pari at Monghe", "Serf", "Bourgeoisie"],
+                        correct: 0
+                    },
+                    {
+                        question: "Siya ang tinagurian `Ama ng Europa`?",
+                        answers: ["Clovis I", "Otto I", "Charlemagne", "Charles Martel"],
+                        correct: 2
+                    },
+                    {
+                        question: "Ang Santo Papang nagkorona kay Charlemagne bilang emperador ng Banal na Imperyong Romano?",
+                        answers: ["Papa John III", "Papa Gregory III", "Papa Leo III", "Papa Francis"],
+                        correct: 2
+                    },
+                    {
+                        question: "Ano ang tawag sa lupang pag-aari ng isang panginoon sa sistemang piyudal?",
+                        answers: ["Manor", "Polis", "Fief", "Estate"],
+                        correct: 0
+                    },
+                    {
+                        question: "Ano ang tawag sa sentrong pang-ekonomiya sa ilalim ng manoryalismo?",
+                        answers: ["Bayan", "Manor", "Lungsod", "Fief"],
+                        correct: 1
+                    },
+                    {
+                        question: "Anong institusyon ang may kapangyarihang mag-excommunicate o magtanggal sa isang tao mula sa simbahan?",
+                        answers: ["Hari", "Simbahang Katoliko", "Parlamento", "Guild"],
+                        correct: 1
+                    },
+                    {
+                        question: "Ano ang naging epekto ng pagbagsak ng Imperyong Romano sa pag-usbong ng Simbahang Katoliko?",
+                        answers: ["Nawala ang kapangyarihan ng simbahan", "Lumakas ang kapangyarihan ng Papa bilang lider ng mga Kristiyanismo", "Nawala ang relihiyon sa Europa", "Nagsimula ang Krusada"],
+                        correct: 1
+                    },
+                    {
+                        question: "Ano ang papel ng mga monasteryo sa Gitnang Panahon?",
+                        answers: ["Sentro ng kalakalan", "Sentro ng edukasyon at pagpapanatili ng kaalaman", "Sentro ng pamahalaan", "Sentro ng piyudalismo"],
+                        correct: 1
+                    },
+                    {
+                        question: "Sino ang naglunsad ng unang Krusada noong 1096?",
+                        answers: ["Papa Urban II", "Papa Gregory VII", "Charlemagne", "Otto I"],
+                        correct: 0
+                    },
+                    {
+                        question: "Ano ang pangunahing layunin ng Banal na Imperyong Romano?",
+                        answers: ["Palawakin ang Islam", "Pagkaisahin ang Kanlurang Europa", "Palakasin ang kalakalan", "Itaguyod ang Renaissance"],
+                        correct: 1
+                    },
+                    {
+                        question: "Ano ang naging epekto ng paglakas ng Simbahang Katoliko sa Europa?",
+                        answers: ["Pagkawala ng mga hari", "Paglawang impluwensya sa pulitika at kultura", "Pagbaba ng edukasyon", "Paglakas ng Islam"],
+                        correct: 1
+                    },
+                    {
+                        question: "Ano ang tawag sa kapangyarihan ng Simbahan na magpatalsik ng mga pinuno ng estado?",
+                        answers: ["Ekskomunikasyon", "Indulhensiya", "Sakramento", "Felsibustero"],
+                        correct: 0
+                    },
+                    {
+                        question: "Sino ang Papa na nakipaglaban kay Haring Henry IV ukol sa karapatan sa pagtatalaga ng mga opisyal ng simbahan?",
+                        answers: ["Gregory I", "Gregory VII", "Urban II", "Leo III"],
+                        correct: 1
+                    },
+                    {
+                        question: "Sino ang namumuno sa manor?",
+                        answers: ["Serf", "Panginoong maylupa", "Hari", "Obispo"],
+                        correct: 1
+                    },
+                    {
+                        question: "Ano ang pangunahing layunin ng manoryalismo?",
+                        answers: ["Pagpapalawak ng kalakalan", "Pagkakaroon ng sariling sapat na pagkain", "Pagpapalaganap ng relihiyon", "Pag-unlad ng sining"],
+                        correct: 1
+                    },
+                    {
+                        question: "Ano ang pangunahing dahilan ng pagiging makasarili ng manor?",
+                        answers: ["Kakulangan ng kalakalan", "Takot sa pagsalakay", "Pag-unlad ng siyensiya", "Paglakas ng Simbahang Katoliko"],
+                        correct: 1
+                    },
+                    {
+                        question: "Ano ang naging papel ng Simbahang Katoliko sa Krusada?",
+                        answers: ["Nagbigay ng armas", "Nagbasbas at nag-udyok sa mga Kristiyano", "Nagpatayo ng mga paaralan", "Nagpalaganap ng Islam"],
+                        correct: 1
+                    },
+                    
+
+                ];
+                
+                this.currentQuestion = 0;
+                this.score = 0;
+                this.timeLeft = 30;
+                this.timer = null;
+                this.selectedAnswer = null;
+                this.gameActive = true;
+                
+                this.initializeElements();
+                this.bindEvents();
+                this.startGame();
+            }
+            
+            initializeElements() {
+                this.questionCounter = document.getElementById('questionCounter');
+                this.scoreDisplay = document.getElementById('scoreDisplay');
+                this.timeDisplay = document.getElementById('timeDisplay');
+                this.questionNumber = document.getElementById('questionNumber');
+                this.questionText = document.getElementById('questionText');
+                this.answersGrid = document.getElementById('answersGrid');
+                this.nextBtn = document.getElementById('nextBtn');
+                this.restartBtn = document.getElementById('restartBtn');
+                this.gameArea = document.getElementById('gameArea');
+                this.resultsArea = document.getElementById('resultsArea');
+                this.finalScore = document.getElementById('finalScore');
+                this.rankTitle = document.getElementById('rankTitle');
+                this.rankDescription = document.getElementById('rankDescription');
+                this.playAgainBtn = document.getElementById('playAgainBtn');
+            }
+            
+            bindEvents() {
+                this.nextBtn.addEventListener('click', () => {
+                    this.soundManager.playClick();
+                    this.nextQuestion();
+                });
+                this.restartBtn.addEventListener('click', () => {
+                    this.soundManager.playClick();
+                    this.restartGame();
+                });
+                this.playAgainBtn.addEventListener('click', () => {
+                    this.soundManager.playClick();
+                    this.restartGame();
+                });
+                
+                // Initialize audio on first user interaction
+                document.addEventListener('click', () => {
+                    this.soundManager.initialize();
+                }, { once: true });
+            }
+            
+            startGame() {
+                this.gameActive = true;
+                this.soundManager.playGameStart();
+                this.loadQuestion();
+                this.startTimer();
+            }
+            
+            loadQuestion() {
+                if (this.currentQuestion >= this.questions.length) {
+                    this.endGame();
+                    return;
+                }
+                
+                const question = this.questions[this.currentQuestion];
+                this.selectedAnswer = null;
+                this.timeLeft = 30;
+                
+                this.questionCounter.textContent = `${this.currentQuestion + 1} / ${this.questions.length}`;
+                this.questionNumber.textContent = `Katanungan ${this.currentQuestion + 1} sa ${this.questions.length}`;
+                this.questionText.textContent = question.question;
+                
+                this.answersGrid.innerHTML = '';
+                question.answers.forEach((answer, index) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'answer-btn';
+                    btn.textContent = answer;
+                    btn.addEventListener('click', () => {
+                        this.soundManager.playClick();
+                        this.selectAnswer(index, btn);
+                    });
+                    this.answersGrid.appendChild(btn);
+                });
+                
+                this.nextBtn.disabled = true;
+                this.startTimer();
+            }
+            
+            selectAnswer(index, btn) {
+                if (!this.gameActive) return;
+                
+                // Remove previous selection
+                document.querySelectorAll('.answer-btn').forEach(b => {
+                    b.classList.remove('selected');
+                });
+                
+                // Mark new selection
+                btn.classList.add('selected');
+                this.selectedAnswer = index;
+                this.nextBtn.disabled = false;
+            }
+            
+            startTimer() {
+                this.clearTimer();
+                this.updateTimeDisplay();
+                
+                this.timer = setInterval(() => {
+                    this.timeLeft--;
+                    this.updateTimeDisplay();
+                    
+                    if (this.timeLeft <= 10 && this.timeLeft > 0) {
+                        this.timeDisplay.classList.add('warning');
+                        this.soundManager.playTick();
+                    }
+                    
+                    if (this.timeLeft <= 0) {
+                        this.timeUp();
+                    }
+                }, 1000);
+            }
+            
+            updateTimeDisplay() {
+                this.timeDisplay.textContent = this.timeLeft;
+            }
+            
+            clearTimer() {
+                if (this.timer) {
+                    clearInterval(this.timer);
+                    this.timer = null;
+                }
+                this.timeDisplay.classList.remove('warning');
+            }
+            
+            timeUp() {
+                this.clearTimer();
+                this.revealAnswer();
+                this.nextBtn.disabled = false;
+                this.gameActive = false;
+            }
+            
+            nextQuestion() {
+                if (this.selectedAnswer !== null) {
+                    this.clearTimer();
+                    this.checkAnswer();
+                } else {
+                    this.currentQuestion++;
+                    this.gameActive = true;
+                    this.loadQuestion();
+                }
+            }
+            
+            checkAnswer() {
+                const question = this.questions[this.currentQuestion];
+                const correct = this.selectedAnswer === question.correct;
+                
+                if (correct) {
+                    this.score++;
+                    this.scoreDisplay.textContent = this.score;
+                    this.soundManager.playCorrect();
+                } else {
+                    this.soundManager.playIncorrect();
+                }
+                
+                this.revealAnswer();
+                this.gameActive = false;
+            }
+            
+            revealAnswer() {
+                const question = this.questions[this.currentQuestion];
+                const buttons = document.querySelectorAll('.answer-btn');
+                
+                buttons.forEach((btn, index) => {
+                    btn.disabled = true;
+                    if (index === question.correct) {
+                        btn.classList.add('correct');
+                    } else if (index === this.selectedAnswer && index !== question.correct) {
+                        btn.classList.add('incorrect');
+                    }
+                });
+                
+                setTimeout(() => {
+                    this.currentQuestion++;
+                    this.gameActive = true;
+                    this.loadQuestion();
+                }, 2000);
+            }
+            
+            endGame() {
+                this.clearTimer();
+                this.gameArea.classList.add('hidden');
+                this.resultsArea.classList.remove('hidden');
+                
+                // Play victory sound
+                this.soundManager.playVictory();
+                
+                this.finalScore.textContent = `Your Score: ${this.score}/${this.questions.length}`;
+                
+                const percentage = (this.score / this.questions.length) * 100;
+                let rank, description;
+                
+                if (percentage >= 90) {
+                    rank = "🏰 Noble Lord/Lady";
+                    description = "Thou art truly learned in the ways of the medieval realm! A master of history!";
+                } else if (percentage >= 80) {
+                    rank = "⚔️ Knight";
+                    description = "Well done, brave knight! Thy knowledge serves thee well in these ancient lands!";
+                } else if (percentage >= 70) {
+                    rank = "🛡️ Squire";
+                    description = "A respectable showing! With more study, thou shall become a true knight!";
+                } else if (percentage >= 60) {
+                    rank = "🏹 Archer";
+                    description = "Thy aim is fair, but there is room for improvement in thy medieval studies!";
+                } else if (percentage >= 50) {
+                    rank = "🔨 Blacksmith";
+                    description = "Thou hast some knowledge, but more learning awaits thee at the forge of wisdom!";
+                } else {
+                    rank = "👨‍🌾 Peasant";
+                    description = "Fear not! Every lord was once a peasant. Study the medieval times and return!";
+                }
+                
+                this.rankTitle.textContent = rank;
+                this.rankDescription.textContent = description;
+            }
+            
+            restartGame() {
+                this.currentQuestion = 0;
+                this.score = 0;
+                this.selectedAnswer = null;
+                this.gameActive = true;
+                
+                this.scoreDisplay.textContent = this.score;
+                this.resultsArea.classList.add('hidden');
+                this.gameArea.classList.remove('hidden');
+                
+                this.startGame();
+            }
+        }
+        
+        // Initialize the game when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new MedievalQuiz();
+        });
+    </script>
+</body>
+</html>

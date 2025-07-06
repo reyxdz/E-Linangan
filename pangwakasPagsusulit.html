@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pangwakas na Pagsusulit</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Cinzel', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="stars" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="0.5" fill="%23fff" opacity="0.3"/><circle cx="15" cy="8" r="0.3" fill="%23fff" opacity="0.2"/><circle cx="8" cy="15" r="0.4" fill="%23fff" opacity="0.25"/></pattern></defs><rect width="100" height="100" fill="url(%23stars)"/></svg>');
+            opacity: 0.1;
+            z-index: -1;
+            animation: twinkle 8s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.3; }
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .game-header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .game-title {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: #d4af37;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5), 0 0 40px rgba(212, 175, 55, 0.3);
+            margin-bottom: 10px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(212, 175, 55, 0.5), 0 0 40px rgba(212, 175, 55, 0.3); }
+            to { text-shadow: 0 0 30px rgba(212, 175, 55, 0.8), 0 0 60px rgba(212, 175, 55, 0.5); }
+        }
+        
+        .game-subtitle {
+            font-size: 1.2rem;
+            color: #c0c0c0;
+            font-weight: 400;
+        }
+        
+        .quiz-container {
+            background: rgba(0, 0, 0, 0.8);
+            border: 3px solid #d4af37;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.3), inset 0 0 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 1s ease-out 0.5s both;
+        }
+        
+        .quiz-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.05), transparent);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        .question-container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .question-number {
+            color: #d4af37;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .question-text {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: #ffffff;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .answer-option {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            border: 2px solid #5d6d7e;
+            border-radius: 10px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .answer-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .answer-option:hover {
+            border-color: #d4af37;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+        
+        .answer-option:hover::before {
+            left: 100%;
+        }
+        
+        .answer-option.selected {
+            border-color: #d4af37;
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            color: #000;
+            transform: scale(1.02);
+        }
+        
+        .answer-option.correct {
+            border-color: #27ae60;
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            animation: correctPulse 0.6s ease-in-out;
+        }
+        
+        .answer-option.incorrect {
+            border-color: #e74c3c;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            animation: incorrectShake 0.6s ease-in-out;
+        }
+        
+        @keyframes correctPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes incorrectShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
+        .answer-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .controls {
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            border: none;
+            color: #000;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: 'Cinzel', serif;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .score-display {
+            color: #d4af37;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.1);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #d4af37, #f1c40f);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        .game-over {
+            text-align: center;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 15px;
+            border: 3px solid #d4af37;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .final-score {
+            font-size: 2.5rem;
+            color: #d4af37;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
+        }
+        
+        .game-over-message {
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 15px; }
+            .quiz-container { padding: 25px; }
+            .answers-grid { grid-template-columns: 1fr; }
+            .controls { flex-direction: column; text-align: center; }
+        }
+        
+        /* Particle effect */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #d4af37;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 6s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="game-header">
+            <h1 class="game-title">Pangwakas na Pagsusulit</h1>
+            <p class="game-subtitle">Sukatin natin ang iyong kaalaman!</p>
+        </div>
+        
+        <div class="quiz-container" id="quizContainer">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            
+            <div class="question-container" id="questionContainer">
+                <div class="question-number" id="questionNumber">Tanong 1 sa 1</div>
+                <div class="question-text" id="questionText">
+                    In medieval times, what was the primary weapon used by knights in mounted combat?
+                </div>
+                
+                <div class="answers-grid" id="answersGrid">
+                    <div class="answer-option" data-answer="0">
+                        <div class="answer-text">Sword</div>
+                    </div>
+                    <div class="answer-option" data-answer="1">
+                        <div class="answer-text">Lance</div>
+                    </div>
+                    <div class="answer-option" data-answer="2">
+                        <div class="answer-text">Crossbow</div>
+                    </div>
+                    <div class="answer-option" data-answer="3">
+                        <div class="answer-text">Mace</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <div class="score-display" id="scoreDisplay">Iskor: 0</div>
+                <button class="btn" id="submitBtn" disabled>Ipasa</button>
+                <button class="btn" id="nextBtn" style="display: none;">Sumunod</button>
+            </div>
+        </div>
+        
+        <div class="game-over" id="gameOver" style="display: none;">
+            <div class="final-score" id="finalScore">Ang Iyong Huling Iskor: 0/1</div>
+            <div class="game-over-message" id="gameOverMessage">
+                Magiting na mandirigma, mahusay ang iyong pakikipaglaban! Patuloy ang iyong paglalakbay tungo sa karunungan...
+            </div>
+            <a href="pambungad3.html"><button class="btn" id="restartBtn">Pumasyal</button></a>
+        </div>
+    </div>
+
+    <script>
+        // Game state
+        let currentQuestion = 0;
+        let score = 0;
+        let selectedAnswer = null;
+        let answered = false;
+        
+        // Sample questions array - you can easily duplicate and modify this structure
+        const questions = [
+            {
+                question: "Ano ang mas malalim na dahilan ng pagbagsak ng Kanlurang Imperyong Romano batay sa kombinasyon ng panloob at panlabas na salik?",
+                answers: ["Labis na pagpapalawak ng teritoryo", "Kakulangan sa pinuno", "Pagbagsak ng ekonomiya at patuloy na pananakop ng mga barbaro", "Pagtaas ng populasyon"],
+                correct: 2
+            }
+        ];
+        
+        // DOM elements
+        const questionNumber = document.getElementById('questionNumber');
+        const questionText = document.getElementById('questionText');
+        const answersGrid = document.getElementById('answersGrid');
+        const submitBtn = document.getElementById('submitBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const progressFill = document.getElementById('progressFill');
+        const gameOver = document.getElementById('gameOver');
+        const finalScore = document.getElementById('finalScore');
+        const gameOverMessage = document.getElementById('gameOverMessage');
+        const restartBtn = document.getElementById('restartBtn');
+        const quizContainer = document.getElementById('quizContainer');
+        
+        // Sound effects using Web Audio API
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playSound(frequency, duration, type = 'sine') {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = frequency;
+            oscillator.type = type;
+            
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration);
+        }
+        
+        // Sound effects
+        const sounds = {
+            select: () => playSound(400, 0.1, 'triangle'),
+            correct: () => {
+                playSound(523, 0.2, 'sine');
+                setTimeout(() => playSound(659, 0.2, 'sine'), 100);
+                setTimeout(() => playSound(784, 0.3, 'sine'), 200);
+            },
+            incorrect: () => {
+                playSound(200, 0.3, 'sawtooth');
+                setTimeout(() => playSound(150, 0.3, 'sawtooth'), 150);
+            },
+            complete: () => {
+                playSound(523, 0.2, 'sine');
+                setTimeout(() => playSound(659, 0.2, 'sine'), 100);
+                setTimeout(() => playSound(784, 0.2, 'sine'), 200);
+                setTimeout(() => playSound(1047, 0.4, 'sine'), 300);
+            }
+        };
+        
+        // Initialize game
+        function initGame() {
+            currentQuestion = 0;
+            score = 0;
+            selectedAnswer = null;
+            answered = false;
+            updateDisplay();
+            showQuestion();
+        }
+        
+        // Show current question
+        function showQuestion() {
+            const question = questions[currentQuestion];
+            questionNumber.textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+            questionText.textContent = question.question;
+            
+            // Clear previous answers
+            answersGrid.innerHTML = '';
+            
+            // Create answer options
+            question.answers.forEach((answer, index) => {
+                const answerDiv = document.createElement('div');
+                answerDiv.className = 'answer-option';
+                answerDiv.dataset.answer = index;
+                answerDiv.innerHTML = `<div class="answer-text">${answer}</div>`;
+                answersGrid.appendChild(answerDiv);
+            });
+            
+            // Add event listeners
+            const answerOptions = document.querySelectorAll('.answer-option');
+            answerOptions.forEach(option => {
+                option.addEventListener('click', selectAnswer);
+            });
+            
+            // Reset buttons
+            submitBtn.style.display = 'block';
+            submitBtn.disabled = true;
+            nextBtn.style.display = 'none';
+            answered = false;
+            selectedAnswer = null;
+            
+            // Update progress
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            progressFill.style.width = progress + '%';
+            
+            // Add particles
+            createParticles();
+        }
+        
+        // Select answer
+        function selectAnswer(e) {
+            if (answered) return;
+            
+            // Remove previous selection
+            document.querySelectorAll('.answer-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Select current answer
+            e.currentTarget.classList.add('selected');
+            selectedAnswer = parseInt(e.currentTarget.dataset.answer);
+            submitBtn.disabled = false;
+            
+            // Play select sound
+            sounds.select();
+        }
+        
+        // Submit answer
+        function submitAnswer() {
+            if (selectedAnswer === null || answered) return;
+            
+            answered = true;
+            const question = questions[currentQuestion];
+            const answerOptions = document.querySelectorAll('.answer-option');
+            
+            // Show correct/incorrect
+            answerOptions.forEach((option, index) => {
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedAnswer && selectedAnswer !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            // Update score
+            if (selectedAnswer === question.correct) {
+                score++;
+                sounds.correct();
+            } else {
+                sounds.incorrect();
+            }
+            
+            updateDisplay();
+            
+            // Show next button or finish game
+            submitBtn.style.display = 'none';
+            if (currentQuestion < questions.length - 1) {
+                setTimeout(() => {
+                    nextBtn.style.display = 'block';
+                }, 1000);
+            } else {
+                setTimeout(endGame, 1500);
+            }
+        }
+        
+        // Next question
+        function nextQuestion() {
+            currentQuestion++;
+            showQuestion();
+        }
+        
+        // End game
+        function endGame() {
+            quizContainer.style.display = 'none';
+            gameOver.style.display = 'block';
+            
+            finalScore.textContent = `Your Final Score: ${score}/${questions.length}`;
+            
+            // Custom message based on score
+            const percentage = (score / questions.length) * 100;
+            if (percentage === 100) {
+                gameOverMessage.textContent = "Perpekto! Tunay kang bihasa sa kaalaman ng Gitnang Panahon!";
+            } else if (percentage >= 80) {
+                gameOverMessage.textContent = "Napakagaling! Napatunayan mong ikaw ay isang karapat-dapat na iskolar!";
+            } else if (percentage >= 60) {
+                gameOverMessage.textContent = "Magaling! Kapuri-puri ang iyong kaalaman sa panahon ng Gitnang Panahon!";
+            } else {
+                gameOverMessage.textContent = "Matapang na pagsisikap! Ipagpatuloy ang iyong pag-aaral upang maging isang tunay na dalubhasa sa Gitnang Panahon!";
+            }
+            
+            sounds.complete();
+        }
+        
+        // Restart game
+        function restartGame() {
+            gameOver.style.display = 'none';
+            quizContainer.style.display = 'block';
+            initGame();
+        }
+        
+        // Update display
+        function updateDisplay() {
+            scoreDisplay.textContent = `Score: ${score}`;
+        }
+        
+        // Create floating particles
+        function createParticles() {
+            const particles = document.querySelectorAll('.particle');
+            particles.forEach(particle => particle.remove());
+            
+            for (let i = 0; i < 5; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(particle);
+            }
+        }
+        
+        // Event listeners
+        submitBtn.addEventListener('click', submitAnswer);
+        nextBtn.addEventListener('click', nextQuestion);
+        restartBtn.addEventListener('click', restartGame);
+        
+        // Initialize game on load
+        document.addEventListener('DOMContentLoaded', initGame);
+        
+        // Handle audio context for mobile devices
+        document.addEventListener('click', () => {
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+        });
+    </script>
+</body>
+</html>

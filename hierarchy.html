@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medieval Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cinzel', serif;
+            background: linear-gradient(135deg, #2c1810 0%, #8b4513 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .title {
+            color: #d4af37;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-weight: bold;
+        }
+
+        .gallery-container {
+            display: flex;
+            gap: 20px;
+            max-width: 1200px;
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .photo-card {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .photo-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: #d4af37;
+            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.4);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .photo-title {
+            padding: 20px;
+            text-align: center;
+            color: #d4af37;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .popup-content {
+            background: linear-gradient(135deg, #1a1a1a 0%, #3d2914 100%);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            border: 3px solid #d4af37;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            position: relative;
+            animation: popupSlide 0.3s ease-out;
+        }
+
+        @keyframes popupSlide {
+            from {
+                opacity: 0;
+                transform: scale(0.7) translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .popup-title {
+            color: #d4af37;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .popup-description {
+            color: #e8e8e8;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #d4af37;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .photo-card {
+                max-width: 100%;
+                width: 100%;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+            
+            .popup-content {
+                padding: 30px 20px;
+            }
+            
+            .popup-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">Medieval Hierarchy</h1>
+    
+    <div class="gallery-container">
+        <div class="photo-card" onclick="openPopup('kings')">
+            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=250&fit=crop" alt="Kings">
+            <div class="photo-title">Kings</div>
+        </div>
+        
+        <div class="photo-card" onclick="openPopup('lords')">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop" alt="Lords">
+            <div class="photo-title">Lords</div>
+        </div>
+        
+        <div class="photo-card" onclick="openPopup('knights')">
+            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=250&fit=crop&sat=-100" alt="Knights">
+            <div class="photo-title">Knights</div>
+        </div>
+        
+        <div class="photo-card" onclick="openPopup('peasants')">
+            <img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=400&h=250&fit=crop" alt="Peasants">
+            <div class="photo-title">Peasants</div>
+        </div>
+    </div>
+
+    <!-- Popup Overlays -->
+    <div id="kings-popup" class="popup-overlay" onclick="closePopup('kings')">
+        <div class="popup-content" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="closePopup('kings')">&times;</button>
+            <h2 class="popup-title">Kings</h2>
+            <p class="popup-description">
+                The supreme rulers of medieval society, kings held absolute power over their kingdoms. They commanded armies, 
+                controlled vast territories, and were believed to rule by divine right. Medieval kings were responsible for 
+                maintaining order, dispensing justice, and protecting their realm from enemies. They lived in magnificent castles 
+                and were surrounded by elaborate courts filled with nobles, advisors, and servants.
+            </p>
+        </div>
+    </div>
+
+    <div id="lords-popup" class="popup-overlay" onclick="closePopup('lords')">
+        <div class="popup-content" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="closePopup('lords')">&times;</button>
+            <h2 class="popup-title">Lords</h2>
+            <p class="popup-description">
+                Noble landowners who held territories granted by the king, lords were the backbone of the feudal system. 
+                They controlled vast estates, collected taxes from peasants, and provided military service to their king. 
+                Lords lived in fortified manor houses or castles and wielded considerable local power. They were responsible 
+                for maintaining law and order in their domains and protecting their vassals in times of war.
+            </p>
+        </div>
+    </div>
+
+    <div id="knights-popup" class="popup-overlay" onclick="closePopup('knights')">
+        <div class="popup-content" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="closePopup('knights')">&times;</button>
+            <h2 class="popup-title">Knights</h2>
+            <p class="popup-description">
+                Elite warriors bound by the code of chivalry, knights were the professional soldiers of medieval society. 
+                They served their lords in exchange for land grants and were expected to be brave, honorable, and skilled in combat. 
+                Knights underwent rigorous training from childhood and were equipped with expensive armor and weapons. 
+                They participated in tournaments, crusades, and defended their lord's territories with unwavering loyalty.
+            </p>
+        </div>
+    </div>
+
+    <div id="peasants-popup" class="popup-overlay" onclick="closePopup('peasants')">
+        <div class="popup-content" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="closePopup('peasants')">&times;</button>
+            <h2 class="popup-title">Peasants</h2>
+            <p class="popup-description">
+                The majority of medieval society, peasants were farmers and laborers who worked the land. They lived in 
+                small villages and were bound to their lord's estate, unable to leave without permission. Peasants provided 
+                food and labor that sustained the entire feudal system. Despite their hard lives, they developed strong 
+                community bonds and maintained rich traditions through festivals, crafts, and oral storytelling.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function openPopup(type) {
+            const popup = document.getElementById(type + '-popup');
+            popup.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePopup(type) {
+            const popup = document.getElementById(type + '-popup');
+            popup.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close popup when pressing Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const popups = document.querySelectorAll('.popup-overlay');
+                popups.forEach(popup => {
+                    popup.style.display = 'none';
+                });
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>

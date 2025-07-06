@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gitnang Panahon - Mga Hamon</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css-files/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f1a 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #d4af37, #ffd700, #b8860b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #cccccc;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+            margin-top: 4em;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            height: 450px;
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.2);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .game-card:hover::before {
+            opacity: 1;
+        }
+
+        .game-image {
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(135deg, #2c1810, #4a2f1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-icon {
+            font-size: 4rem;
+            opacity: 0.3;
+            transition: all 0.3s ease;
+        }
+
+        .game-card:hover .game-icon {
+            opacity: 0.6;
+            transform: scale(1.1);
+        }
+
+        .game-info {
+            padding: 20px;
+            height: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .game-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .game-description {
+            font-size: 0.9rem;
+            color: #cccccc;
+            opacity: 0.8;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+
+        .game-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #d4af37;
+        }
+
+        .play-button {
+            background: linear-gradient(45deg, #d4af37, #ffd700);
+            color: #1a1a2e;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .play-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+            background: linear-gradient(45deg, #ffd700, #d4af37);
+        }
+
+        .stats-bar {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #d4af37;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #cccccc;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #d4af37;
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
+            opacity: 0.3;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .games-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .game-card {
+                height: 250px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .stats-bar {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+            <nav class="nav container">
+                <a href="pambungad1.html" class="nav_logo">E-LINANGAN</a>
+
+                <div class="nav_menu" id="nav-menu">
+                    <ul class="nav_list">
+                        <li class="nav_item">
+                            <a href="pambungad1.html" class="nav_link">
+                                <i class="ri-arrow-right-up-line"></i>
+                                <span>Pambungad</span>
+                            </a>
+                        </li>
+
+                        <li class="nav_item" onclick="openPopup()">
+                            <a href="aralin1.html" class="nav_link">
+                                <i class="ri-arrow-right-up-line"></i>
+                                <span>Nilalaman</span>
+                            </a>
+                        </li>
+
+                        <li class="nav_item" onclick="openPopup()">
+                            <a href="palaro.html" class="nav_link">
+                                <i class="ri-arrow-right-up-line"></i>
+                                <span>Hamon</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                <!-- CLOSE BUTTON START -->
+                <div class="nav_close" id="nav-close">
+                    <i class="ri-close-large-line"></i>
+                 </div>
+                <!-- CLOSE BUTTON END -->
+                </div>
+
+                <!-- TOOGLE BUTTON START -->
+                <div class="nav_toggle" id="nav-toggle">
+                    <i class="ri-menu-2-line"></i>
+                 </div>
+                <!-- TOOGLE BUTTON END -->
+            </nav>
+         </header>
+
+    <div class="floating-particles"></div>
+    
+    <div class="container">
+
+        <div class="games-grid">
+            <div class="game-card" data-game="anagram">
+                <div class="game-image">
+                    <div class="game-icon"><img src="images/anagram.jpg"></div>
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Anagram</h3>
+                    <p class="game-description">Ayusin ang mga titik upang makabuo ng mga makabuluhang salita. Hamunin ang iyong bokabularyo!</p>
+                    <div class="game-meta">
+                        <span>Larong Palaisipan ng Salita • Pampatalas ng Isip</span>
+                        <button class="play-button">LARUIN</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card" data-game="pagtutugma">
+                <div class="game-image">
+                    <div class="game-icon"><img src="images/pagtutugma.png"></div>
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Pagtutugma</h3>
+                    <p class="game-description">Ikonekta ang mga kaugnay na bagay sa pamamagitan ng pagguhit ng mga linya sa pagitan nila. Subukan ang iyong mga pagkakatulad!</p>
+                    <div class="game-meta">
+                        <span>Larong Pagtutugma • Pampatalas ng Memorya</span>
+                        <button class="play-button">LARUIN</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card" data-game="kuwiz">
+                <div class="game-image">
+                    <div class="game-icon"><img src="images/quiz.webp"></div>
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Kuwiz</h3>
+                    <p class="game-description">Sumagot ng mga multiple choice na tanong at subukan ang iyong kaalaman sa iba't ibang paksa.</p>
+                    <div class="game-meta">
+                        <span>Hamong Pangkaalaman • Patimpalak ng Talino</span>
+                        <button class="play-button">LARUIN</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card" data-game="matchingpairs">
+                <div class="game-image">
+                    <div class="game-icon"><img src="images/matchingpairs.jpg"></div>
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Magkatugmang Magares</h3>
+                    <p class="game-description">I-flip ang mga kard upang makahanap ng magkaparehong pares. Sanayin ang iyong memorya at konsentrasyon!</p>
+                    <div class="game-meta">
+                        <span>Larong Pagtutugma • Pampatalas ng Memorya</span>
+                        <button class="play-button">LARUIN</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card" data-game="flashcards">
+                <div class="game-image">
+                    <div class="game-icon"><img src="images/flashcards.webp"></div>
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Mga Flash Card</h3>
+                    <p class="game-description">Mag-aral gamit ang mga interactive flash card. Perpekto para sa pag-aaral at pagsusuri!</p>
+                    <div class="game-meta">
+                        <span>Larong Pangkaalaman • Memoryang Mabilisang Pagsasanay</span>
+                        <button class="play-button">LARUIN</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card" data-game="openbox">
+                <div class="game-image">
+                    <div class="game-icon"><img src="images/openbox.jpg"></div>
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Buksan ang Kahon</h3>
+                    <p class="game-description">I-click upang ipakita ang nakatagong nilalaman sa loob ng mga mahiwagang kahon. Naghihintay ang mga sorpresa!</p>
+                    <div class="game-meta">
+                        <span>Larong Panunubok • Larong Sorpresa</span>
+                        <button class="play-button">LARUIN</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card" data-game="speakingcards">
+                <div class="game-image">
+                    <div class="game-icon"><img src="images/speakingcards.webp"></div>
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Mga Karta ng Pagsasalita</h3>
+                    <p class="game-description">Magsanay ng kasanayan sa pagsasalita gamit ang mga interactive na card ng pag-uusap at mga panukala.</p>
+                    <div class="game-meta">
+                        <span>Interaktibong Kard • Pagsasanay sa Pagbigkas</span>
+                        <button class="play-button">LARUIN</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card" data-game="spinthewheel">
+                <div class="game-image">
+                    <div class="game-icon"><img src="images/spinwheel.webp"></div>
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Paikutin ang Gulong</h3>
+                    <p class="game-description">Paikutin ang makulay na gulong at tingnan kung saan ka dadalhin ng kapalaran. Nakaka-excite at sapalaran!</p>
+                    <div class="game-meta">
+                        <span>Larong Pagsusubok ng Suwerte • Palarong Paikutang Gulong</span>
+                        <button class="play-button">LARUIN</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card" data-game="hanapinangtugma">
+                <div class="game-image">
+                    <div class="game-icon"><img src="images/findmatch.webp"></div>
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Hanapin ang Tugma</h3>
+                    <p class="game-description">Tuklasin ang tamang mga pares na nakatago sa iba't ibang mga opsyon. Kinakailangan ang matalas na mata!</p>
+                    <div class="game-meta">
+                        <span>Larong Obserbasyon • Pampatalas ng Memorya</span>
+                        <button class="play-button">LARUIN</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const particleContainer = document.querySelector('.floating-particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                particleContainer.appendChild(particle);
+            }
+        }
+
+        // Add click functionality to game cards
+        document.querySelectorAll('.game-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const gameTitle = this.querySelector('.game-title').textContent;
+                // Add ripple effect
+                const ripple = document.createElement('div');
+                ripple.style.cssText = `
+                    position: absolute;
+                    border-radius: 50%;
+                    background: rgba(212, 175, 55, 0.6);
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    pointer-events: none;
+                    width: 100px;
+                    height: 100px;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%) scale(0);
+                `;
+                
+                this.appendChild(ripple);
+            });
+        });
+
+        // Add click functionality to play buttons
+        // Game URLs - Replace these with your actual game links
+        const gameUrls = {
+            'Anagram': 'https://wordwall.net/tl/embed/5bdc0bf75b8e4d7ebc1092ce7bd98bde?themeId=48&templateId=38&fontStackId=2',
+            'Pagtutugma': 'https://wordwall.net/tl/embed/5bdc0bf75b8e4d7ebc1092ce7bd98bde?themeId=48&templateId=3&fontStackId=2',
+            'Kuwiz': 'https://wordwall.net/tl/embed/5bdc0bf75b8e4d7ebc1092ce7bd98bde?themeId=48&templateId=5&fontStackId=2',
+            'Magkatugmang Magpares': 'https://wordwall.net/tl/embed/5bdc0bf75b8e4d7ebc1092ce7bd98bde?themeId=48&templateId=25&fontStackId=2',
+            'Mga Flash Card': 'https://wordwall.net/tl/embed/5bdc0bf75b8e4d7ebc1092ce7bd98bde?themeId=48&templateId=76&fontStackId=2',
+            'openbox': 'https://wordwall.net/tl/embed/5bdc0bf75b8e4d7ebc1092ce7bd98bde?themeId=48&templateId=76&fontStackId=2',
+            'Buksan ang Kahon': 'https://wordwall.net/tl/embed/5bdc0bf75b8e4d7ebc1092ce7bd98bde?themeId=48&templateId=30&fontStackId=2',
+            'Mga Karta ng Pagsasalita': 'src="https://wordwall.net/tl/embed/5bdc0bf75b8e4d7ebc1092ce7bd98bde?themeId=48&templateId=70&fontStackId=2"',
+            'Paikutin ang Gulong': 'https://wordwall.net/tl/embed/5bdc0bf75b8e4d7ebc1092ce7bd98bde?themeId=48&templateId=70&fontStackId=2',
+            'Hanapin ang Tugma': 'https://wordwall.net/tl/embed/5bdc0bf75b8e4d7ebc1092ce7bd98bde?themeId=48&templateId=46&fontStackId=2',
+        };
+
+        // Add click functionality to game cards
+        document.querySelectorAll('.game-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const gameTitle = this.querySelector('.game-title').textContent;
+                const gameUrl = gameUrls[gameTitle];
+                
+                // Add ripple effect
+                const ripple = document.createElement('div');
+                ripple.style.cssText = `
+                    position: absolute;
+                    border-radius: 50%;
+                    background: rgba(212, 175, 55, 0.6);
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    pointer-events: none;
+                    width: 100px;
+                    height: 100px;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%) scale(0);
+                `;
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                    if (gameUrl && gameUrl !== 'https://your-game-url-here.com') {
+                        // Open game in new tab
+                        window.open(gameUrl, '_blank');
+                    } else {
+                        alert(`${gameTitle} - Game URL not set yet`);
+                    }
+                }, 600);
+            });
+        });
+
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: translate(-50%, -50%) scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize particles
+        createParticles();
+
+        // Add smooth scrolling and parallax effects
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.floating-particles');
+            const speed = scrolled * 0.5;
+            parallax.style.transform = `translateY(${speed}px)`;
+        });
+
+        // Add hover sound effect simulation
+        document.querySelectorAll('.game-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.filter = 'brightness(1.1)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.filter = 'brightness(1)';
+            });
+        });
+    </script>
+</body>
+</html>
