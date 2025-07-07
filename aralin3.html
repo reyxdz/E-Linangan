@@ -1528,7 +1528,7 @@
     </div>
 
     <!-- Pop-up Modal -->
-     <div class="overlay" id="overlay" onclick="closePopup()">
+     <div class="overlay" id="overlay" onclick="closePopup1()">
         <div class="popup" onclick="event.stopPropagation()">
             <div class="decorative-border"></div>
             <h1>⚠️ Pagpugay ⚠️</h1>
@@ -1537,7 +1537,7 @@
                 <button class="popup-button proceed-btn" onclick="proceedToQuiz()">
                     ⚔️ Tanggapin ang Hamon
                 </button>
-                <button class="popup-button close-btn" onclick="closePopup()">
+                <button class="popup-button close-btn" onclick="closePopup1()">
                     🛡️ Umatras
                 </button>
             </div>
@@ -1841,6 +1841,7 @@
             }
         }
 
+        // Valid
         function closePopup() {
             document.getElementById('popup-overlay').style.display = 'none';
             document.body.style.overflow = 'auto';
@@ -1853,6 +1854,7 @@
             });
         }
 
+        // Valid
         // Close popup with Escape key
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
@@ -1892,20 +1894,20 @@
             document.getElementById('overlay').classList.add('active');
         }
 
-        function closePopup() {
+        function closePopup1() {
             document.getElementById('overlay').classList.remove('active');
         }
 
         function proceedToQuiz() {
             window.location.href = "paunangPagsusulit.html";
-            closePopup(); // if you're hiding a modal or popup
+            closePopup1(); // if you're hiding a modal or popup
         }
 
 
         // Close popup when pressing Escape key
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
-                closePopup();
+                closePopup1();
             }
         });
     </script>
