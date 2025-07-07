@@ -655,17 +655,21 @@
             </div>
         </div>
 
-        <div class="overlay" id="overlay">
-    <div class="popup">
-        <div class="decorative-border"></div>
-        <h1>Babala</h1>
-        <p>Bago ka magsimula sa mga hamon, kinakailangan mong dumaan sa paunang pagsusulit upang matukoy ang inyong lebel ng pag-unawa.</p>
-        <div class="popup-buttons">
-            <button class="popup-button proceed-btn" onclick="proceedToQuiz()">Magpatuloy</button>
-            <button class="popup-button close-btn" onclick="closePopup()">Isara</button>
+        <div class="overlay" id="overlay" onclick="closePopup()">
+        <div class="popup" onclick="event.stopPropagation()">
+            <div class="decorative-border"></div>
+            <h1>⚠️ Babala ⚠️</h1>
+            <p>Matapang na mandirigma, ikaw ay magsisimula sa isang mapanganib na pakikipagsapalaran na susubok sa iyong talino at kaalaman! Ang landas sa unahan ay patungo sa isang hamon ng palaisipan kung saan tanging ang pinakatusong isipan lamang ang magtatagumpay. Handa ka na bang harapin ang mga pagsubok na naghihintay?</p>
+            <div class="popup-buttons">
+                <button class="popup-button proceed-btn" onclick="proceedToQuiz()">
+                    ⚔️ Tanggapin ang Hamon
+                </button>
+                <button class="popup-button close-btn" onclick="closePopup()">
+                    🛡️ Umatras
+                </button>
+            </div>
         </div>
     </div>
-</div>
 
     <script>
         // Create floating particles
