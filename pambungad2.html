@@ -3,107 +3,20 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Middle Ages</title>
+        <title>Gitnang Panahon</title>
 
         <!-- REMIXICONS -->
         <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
 
         <!-- CSS -->
         <link rel="stylesheet" href="css-files/style.css">
-
-        <style>
-            .carousel-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            height: 150px;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .carousel-track {
-            display: flex;
-            animation: scroll 20s linear infinite;
-            height: 100%;
-        }
-
-        .carousel-slide {
-            flex: 0 0 300px;
-            height: 90%;
-            margin-right: 1rem;
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .carousel-slide:hover img {
-            transform: scale(1.05);
-        }
-
-        .carousel-slide::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(100,181,246,0.3) 0%, rgba(255,255,255,0.1) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .carousel-slide:hover::after {
-            opacity: 1;
-        }
-
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
-        }
-
-        .carousel-track:hover {
-            animation-play-state: paused;
-        }
-
-        @media (max-width: 768px) {
-            .carousel-container {
-                height: 150px;
-            }
-            
-            .carousel-slide {
-                flex: 0 0 250px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .carousel-slide {
-                flex: 0 0 200px;
-            }
-        }
-
-        .slider {
-            height: 80vh;
-        }
-        </style>
     </head>
 
     <body>
         <!-- HEADER START-->
          <header class="header" id="header">
             <nav class="nav container">
-                <a href="pambungad2.html" class="nav_logo">E-LINANGAN</a>
+                <a href="main.html" class="nav_logo">E-LINANGAN</a>
 
                 <div class="nav_menu" id="nav-menu">
                     <ul class="nav_list">
@@ -119,7 +32,6 @@
                                 <i class="ri-arrow-right-up-line"></i>
                                 <span>Nilalaman</span>
                             </a>
-                        </li>
                         </li>
 
                         <li class="nav_item">
@@ -156,7 +68,8 @@
                 <div class="item active">
                     <img src="images/home-slider/Designer.jpeg">
                     <div class="content">
-                        <p>GITNANG PANAHON</p>
+                        <p style="font-size: 10px; letter-spacing: 5px;">MGA TAMPOK NA PAKSA SA</p>
+                        <p style="letter-spacing: 10px;">GITNANG PANAHON</p>
                         <h2>PIYUDALISMO</h2>
                     </div>
                 </div>
@@ -164,7 +77,8 @@
                 <div class="item">
                     <img src="images/home-slider/Designer (1).jpeg">
                     <div class="content">
-                        <p>GITNANG PANAHON</p>
+                        <p style="font-size: 10px; letter-spacing: 5px;">MGA TAMPOK NA PAKSA SA</p>
+                        <p style="letter-spacing: 10px;">GITNANG PANAHON</p>
                         <h2>Imperyong Romano</h2>
                     </div>
                 </div>
@@ -172,7 +86,8 @@
                 <div class="item">
                     <img src="images/home-slider/Designer (2).jpeg">
                     <div class="content">
-                        <p>GITNANG PANAHON</p>
+                        <p style="font-size: 10px; letter-spacing: 5px;">MGA TAMPOK NA PAKSA SA</p>
+                        <p style="letter-spacing: 10px;">GITNANG PANAHON</p>
                         <h2>MANORYALISMO</h2>
                     </div>
                 </div>
@@ -180,7 +95,8 @@
                 <div class="item">
                     <img src="images/home-slider/Designer (3).jpeg">
                     <div class="content">
-                        <p>GITNANG PANAHON</p>
+                        <p style="font-size: 10px; letter-spacing: 5px;">MGA TAMPOK NA PAKSA SA</p>
+                        <p style="letter-spacing: 10px;">GITNANG PANAHON</p>
                         <h2>SIMBAHANG KATOLIKO</h2>
                     </div>
                 </div>
@@ -188,7 +104,8 @@
                 <div class="item">
                     <img src="images/home-slider/Designer (4).jpeg">
                     <div class="content">
-                        <p>GITNANG PANAHON</p>
+                        <p style="font-size: 10px; letter-spacing: 5px;">MGA TAMPOK NA PAKSA SA</p>
+                        <p style="letter-spacing: 10px;">GITNANG PANAHON</p>
                         <h2>KRUSADA</h2>
                     </div>
                 </div>
@@ -204,30 +121,204 @@
         </div>
         <!-- SLIDER END -->
 
-            <p style="text-align: center; color: #444; margin-bottom: px;">Hatid sa inyo nila</p>
+        <!-- Pop-up Modal -->
+    <div class="overlay" id="overlay" onclick="closePopup()">
+        <div class="popup" onclick="event.stopPropagation()">
+            <div class="decorative-border"></div>
+            <h1>⚠️ Babala ⚠️</h1>
+            <p>Matapang na mandirigma, ikaw ay magsisimula sa isang mapanganib na pakikipagsapalaran na susubok sa iyong talino at kaalaman! Ang landas sa unahan ay patungo sa isang hamon ng palaisipan kung saan tanging ang pinakatusong isipan lamang ang magtatagumpay. Handa ka na bang harapin ang mga pagsubok na naghihintay?</p>
+            <div class="popup-buttons">
+                <button class="popup-button proceed-btn" onclick="proceedToQuiz()">
+                    ⚔️ Tanggapin ang Hamon
+                </button>
+                <button class="popup-button close-btn" onclick="closePopup()">
+                    🛡️ Umatras
+                </button>
+            </div>
+        </div>
+    </div>
+
+<div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+
+    <div class="container2">
+        <header class="header2">
+            <h1>TUNGKOL SA <br>E-LINANGAN</h1>
+            <h2>BUOD NG PAKSA</h2>
+        </header>
+
+        <div class="content-grid">
+            <div class="text-content">
+                <h3>Ang E-Linangan</h3>
+                <p>
+                    Ang <span class="highlight">E-Linangan</span> ay isang interaktibong online na plataporma na idinisanyo upang mapalawak ang kaalaman sa <span class="highlight">Araling Panlipunan 8</span>. Nagbibigay ang website na ito ng mga kawili-wili at madaling ma-access na mga edukasyonal na kagamitan na tumatalakay sa mayamang kasaysayan at mga mahahalagang pagbabago ng <span class="highlight">Gitnang Panahon sa Europa</span>.
+                </p>
+            </div>
+
+            <div class="video-section">
+                <h3>Mga Pagbabagong Naganap sa Europa sa Gitnang Panahon</h3>
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/IJfIenLHh88" 
+                        title="AP G8/Q2:Mga Pagbabagong Naganap sa Europa sa Gitnang Panahon"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <a href="https://www.youtube.com/watch?v=IJfIenLHh88" class="video-link" target="_blank">
+                    Panoorin sa YouTube
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTAINER 3 -->
+    <div class="container3">
+        <h1 class="main-title">ANG MGA MATUTUNAN MO</h1>
+        
+        <div class="modules-grid">
+            <div class="module-card module-1 floating-animation">
+                <div class="icon-container">
+                    <div class="crown">👑</div>
+                </div>
+                <h2 class="module-title">Aralin 1:</h2>
+                <h3 class="module-subtitle">Pagbabagong Pulitikal</h3>
+                <p class="module-description">
+                    Tuklasin ang mga mahalagang pagbabago sa larangan ng pulitika at pamahalaan.
+                </p>
+            </div>
+
+            <div class="module-card module-2 floating-animation" style="animation-delay: 0.5s;">
+                <div class="icon-container">
+                    <div class="castle">🏰</div>
+                </div>
+                <h2 class="module-title">Aralin 2:</h2>
+                <h3 class="module-subtitle">Pagbabagong Ekonomiko</h3>
+                <p class="module-description">
+                    Alamin ang mga pagbabago sa ekonomiya at ang epekto nito sa lipunan.
+                </p>
+            </div>
+
+            <div class="module-card module-3 floating-animation" style="animation-delay: 1s;">
+                <div class="icon-container">
+                    <div class="church">⛪</div>
+                </div>
+                <h2 class="module-title">Aralin 3:</h2>
+                <h3 class="module-subtitle">Pagbabagong Sosyo-Kultural</h3>
+                <p class="module-description">
+                    Pag-aralan ang mga pagbabago sa kultura at lipunan ng mga Pilipino.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <p style="text-align: center; color: #444; margin-top: 3rem;">Hatid sa inyo nila</p>
 
     <div class="carousel-container">
         <div class="carousel-track">
             <div class="carousel-slide">
                 <img src="images/m1.jpg">
+                <div class="carousel-caption">Mercedes Neri</div>
             </div>
             <div class="carousel-slide">
                 <img src="images/m2.jpg">
+                <div class="carousel-caption">Devine Grace Laude</div>
             </div>
             <div class="carousel-slide">
                 <img src="images/m3.jpg">
+                <div class="carousel-caption">Judy Ann Espellarga</div>
             </div>
             <div class="carousel-slide">
                 <img src="images/m4.jpg">
+                <div class="carousel-caption">Erica Bareja</div>
             </div>
             <div class="carousel-slide">
                 <img src="images/m5.jpg">
+                <div class="carousel-caption">Jesie Rosel</div>
             </div>
             <div class="carousel-slide">
                 <img src="images/m6.jpg">
+                <div class="carousel-caption">Mark Kevin Sambitan</div>
             </div>
         </div>
     </div>
+
+    <script>
+        // Add hover effects to cards
+        document.querySelectorAll('.module-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add staggered animation on load
+        window.addEventListener('load', function() {
+            const cards = document.querySelectorAll('.module-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+
+        // Initialize cards with hidden state
+        document.querySelectorAll('.module-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = 'all 0.6s ease';
+        });
+    </script>
+
+
+
+
+    
+
+    <!-- BACKGROUND MUSIC -->
+    <audio id="bg-music" autoplay muted loop>
+        <source src="bgmusic.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        window.addEventListener("click", () => {
+            const music = document.getElementById("bg-music");
+            music.muted = false;
+            music.play().catch(err => console.log("Playback failed:", err));
+        }, { once: true }); // only run once
+    </script>
+
+
+
+
+    <script>
+        function openPopup() {
+            document.getElementById('overlay').classList.add('active');
+        }
+
+        function closePopup() {
+            document.getElementById('overlay').classList.remove('active');
+        }
+
+        function proceedToQuiz() {
+            window.location.href = "paunangPagsusulit.html";
+            closePopup(); // if you're hiding a modal or popup
+        }
+
+
+        // Close popup when pressing Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closePopup();
+            }
+        });
+    </script>
          
 
          <script src="js-files/index.js"></script>
